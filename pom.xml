@@ -81,6 +81,11 @@
             <artifactId>ibatis-core</artifactId>
             <version>3.0</version>
         </dependency>
+<!--        单元测试依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
     </dependencies>
 
     <!--可以将应用打包成一个可执行的jar包-->
