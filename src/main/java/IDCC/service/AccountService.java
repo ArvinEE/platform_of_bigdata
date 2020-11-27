@@ -2,6 +2,8 @@ package IDCC.service;
 
 import IDCC.bean.Account;
 
+import java.util.List;
+
 /**
  * @description: 用户信息接口层
  * @author: Lai Zhouhao
@@ -11,5 +13,7 @@ public interface AccountService {
     //插入一条账号信息
     int insertOneRecord(Account account);
     //删除一条账号信息
-    int deleteOneRecord(int accountId);
+    int deleteOneRecord(String accountId);
+    //登录验证
+    List<Object> userLogin(String accountId, String userPwd);
 }
