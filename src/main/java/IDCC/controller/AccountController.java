@@ -1,17 +1,15 @@
 package IDCC.controller;
 
 import IDCC.bean.Account;
+import IDCC.bean.Teacher;
 import IDCC.service.AccountServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -66,11 +64,19 @@ public class AccountController {
      * @author: Lai Zhouhao
      * @time: 2020/11/27 18:45
      */
-    @GetMapping("/login")
-    @ResponseBody
+    @PostMapping("/login")
     @ApiOperation(value = "用户登录", notes = "21点00分 已测试")
-    public List<Object> userLogin(String accountId, String userPwd){
+    public String userLogin(String accountId, String userPwd, Model model){
         List<Object> userInformation = accountService.userLogin(accountId,userPwd);
-        return userInformation;
+        //获取账号信息
+        Account account = (Account)userInformation.get(0);
+        model.addAttribute("account",account);
+        //获取该账号是教师还是教师
+        if(account.getAccountRight() == 2){
+            model.addAttribute("teacher",((Teacher)userInformation.get(1)));
+        }else{
+            model.addAttribute("teacher",((Teacher)userInformation.get(1)));
+        }
+        return "index";
     }
 }

@@ -1,7 +1,6 @@
 package IDCC.service;
 
 import IDCC.bean.Account;
-import IDCC.bean.Student;
 import IDCC.bean.Teacher;
 import IDCC.mapper.AccountMapper;
 import IDCC.mapper.StudentMapper;
@@ -9,7 +8,6 @@ import IDCC.mapper.TeacherMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -70,8 +68,8 @@ public class AccountServiceImpl implements AccountService{
         //将账户信息、该用户个人信息返回
         if (account.getAccountRight() == 2){
             try {
-                Student student = studentMapper.selectByPrimaryKey(accountId);
-                userInformation.add(student);
+                Teacher teacher = teacherMapper.selectByPrimaryKey(accountId);
+                userInformation.add(teacher);
             }catch (Exception e){
                 System.out.println(e);
             }
