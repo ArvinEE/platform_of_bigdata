@@ -29,7 +29,7 @@ public class TeacherController {
      * @author: Lai Zhouhao
      * @time: 2020/12/7 21:02
      */
-    @PostMapping("/addteacher")
+    @PostMapping("/addTeacher")
     @ApiOperation(value = "增加单条教师信息",notes = "未测试")
     @ResponseBody
     public String addteacher(@ModelAttribute Teacher teacher, HttpServletRequest httpServletRequest){
@@ -45,7 +45,7 @@ public class TeacherController {
      * @author: Lai Zhouhao
      * @time: 2020/12/8 19:29
      */
-    @PostMapping("/delteacher")
+    @PostMapping("/delTeacher")
     @ApiOperation(value = "删除单条教师信息",notes = "未测试")
     @ResponseBody
     public String delteacher(String teacherId){
@@ -61,7 +61,7 @@ public class TeacherController {
      * @author: Lai Zhouhao
      * @time: 2020/12/8 19:29
      */
-    @GetMapping("/searchteacher")
+    @GetMapping("/searchTeacher")
     @ApiOperation(value = "查找单条教师信息",notes = "未测试")
     @ResponseBody
     public String searchteacher(String teacherId, HttpServletRequest httpServletRequest){
@@ -80,7 +80,7 @@ public class TeacherController {
      * @author: Lai Zhouhao
      * @time: 2020/12/8 19:29
      */
-    @PostMapping("/updateteacher")
+    @PostMapping("/updateTeacher")
     @ApiOperation(value = "修改单条教师信息",notes = "未测试")
     @ResponseBody
     public String updatateacher(@ModelAttribute Teacher teacher, HttpServletRequest httpServletRequest){

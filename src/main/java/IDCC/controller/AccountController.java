@@ -25,40 +25,6 @@ public class AccountController {
     private AccountServiceImpl accountService;
 
     /**
-     * @description: 控制增加一条信息
-     * @return: SUCCESS/FAILE
-     * @author: Lai Zhouhao
-     * @time: 2020/11/26 21:23
-     */
-    @PutMapping("/add")
-    @ResponseBody
-    @ApiOperation(value = "增加账号信息",notes = "21点45分 已测试")
-    public String addAccount(Account account){
-        int result = accountService.insertOneRecord(account);
-        if (result == 1){
-            return "SUCCESS";
-        }
-        return "FAILE";
-    }
-
-    /**
-     * @description: 控制删除一条信息
-     * @return: SUCCESS/FAILE
-     * @author: Lai Zhouhao
-     * @time: 2020/11/26 21:23
-     */
-    @PutMapping("/delete")
-    @ResponseBody
-    @ApiOperation(value = "删除账号信息",notes = "21点50分 已测试")
-    public String deleteAccount(String accountId){
-        int result = accountService.deleteOneRecord(accountId);
-        if (result == 1){
-            return "SUCCESS";
-        }
-        return "FAILE";
-    }
-
-    /**
      * @description: 控制登录验证
      * @return: List<Object>
      * @author: Lai Zhouhao
@@ -78,5 +44,39 @@ public class AccountController {
             model.addAttribute("teacher",((Teacher)userInformation.get(1)));
         }
         return "index";
+    }
+
+    /**
+     * @description: 控制增加一条信息
+     * @return: SUCCESS/FAILE
+     * @author: Lai Zhouhao
+     * @time: 2020/11/26 21:23
+     */
+    @PutMapping("/addAccount")
+    @ResponseBody
+    @ApiOperation(value = "增加账号信息",notes = "21点45分 已测试")
+    public String addAccount(Account account){
+        int result = accountService.insertOneRecord(account);
+        if (result == 1){
+            return "SUCCESS";
+        }
+        return "FAILE";
+    }
+
+    /**
+     * @description: 控制删除一条信息
+     * @return: SUCCESS/FAILE
+     * @author: Lai Zhouhao
+     * @time: 2020/11/26 21:23
+     */
+    @PutMapping("/delAccount")
+    @ResponseBody
+    @ApiOperation(value = "删除账号信息",notes = "21点50分 已测试")
+    public String deleteAccount(String accountId){
+        int result = accountService.deleteOneRecord(accountId);
+        if (result == 1){
+            return "SUCCESS";
+        }
+        return "FAILE";
     }
 }

@@ -29,10 +29,10 @@ public class StudentController {
      * @author: Lai Zhouhao
      * @time: 2020/12/7 21:02
      */
-    @PostMapping("/addstudent")
+    @PostMapping("/addStudent")
     @ApiOperation(value = "增加单条学生信息",notes = "未测试")
     @ResponseBody
-    public String addstudent(@ModelAttribute Student student, HttpServletRequest httpServletRequest){
+    public String addStudent(@ModelAttribute Student student, HttpServletRequest httpServletRequest){
         if(studentService.addStudent(student) == 1){
             return "SUCCESS";
         }
@@ -45,7 +45,7 @@ public class StudentController {
      * @author: Lai Zhouhao
      * @time: 2020/12/8 19:29
      */
-    @PostMapping("/delstudent")
+    @PostMapping("/delStudent")
     @ApiOperation(value = "删除单条学生信息",notes = "未测试")
     @ResponseBody
     public String delstudent(String studentId){
@@ -61,7 +61,7 @@ public class StudentController {
      * @author: Lai Zhouhao
      * @time: 2020/12/8 19:29
      */
-    @GetMapping("/searchstudent")
+    @GetMapping("/searchStudent")
     @ApiOperation(value = "查找单条学生信息",notes = "未测试")
     @ResponseBody
     public String searchstudent(String studentId, HttpServletRequest httpServletRequest){
@@ -80,7 +80,7 @@ public class StudentController {
      * @author: Lai Zhouhao
      * @time: 2020/12/8 19:29
      */
-    @PostMapping("/updatestudent")
+    @PostMapping("/updateStudent")
     @ApiOperation(value = "修改单条学生信息",notes = "未测试")
     @ResponseBody
     public String updatastudent(@ModelAttribute Student student, HttpServletRequest httpServletRequest){
