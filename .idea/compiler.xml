@@ -7,11 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="platform_of_bigdata" />
+        <module name="house_rental" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="house_rental" options="-parameters" />
       <module name="platform_of_bigdata" options="-parameters" />
     </option>
   </component>
