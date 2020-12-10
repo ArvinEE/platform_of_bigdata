@@ -1,15 +1,17 @@
 package IDCC.controller;
 
 import IDCC.bean.Account;
+import IDCC.bean.Student;
 import IDCC.bean.Teacher;
 import IDCC.service.AccountServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -32,22 +34,23 @@ public class AccountController {
      */
     @PostMapping("/login")
     @ApiOperation(value = "用户登录", notes = "21点00分 已测试")
-    public String userLogin(String accountId, String userPwd, Model model){
+    public String userLogin(String accountId, String userPwd, HttpServletRequest httpServletRequest){
         List<Object> userInformation = accountService.userLogin(accountId,userPwd);
         //获取账号信息
         Account account = (Account)userInformation.get(0);
-        model.addAttribute("account",account);
-        //获取该账号是教师还是教师
+        HttpSession session = httpServletRequest.getSession();
+        session.setAttribute("account",account);
+        //将用户信息放入session
         if(account.getAccountRight() == 2){
-            model.addAttribute("teacher",((Teacher)userInformation.get(1)));
+            session.setAttribute("user",((Student)userInformation.get(1)));
         }else{
-            model.addAttribute("teacher",((Teacher)userInformation.get(1)));
+            session.setAttribute("user",((Teacher)userInformation.get(1)));
         }
         return "index";
     }
 
     /**
-     * @description: 控制增加一条信息
+     * @description: 控制增加一条账号信息
      * @return: SUCCESS/FAILE
      * @author: Lai Zhouhao
      * @time: 2020/11/26 21:23
@@ -64,7 +67,7 @@ public class AccountController {
     }
 
     /**
-     * @description: 控制删除一条信息
+     * @description: 控制删除一条账号信息
      * @return: SUCCESS/FAILE
      * @author: Lai Zhouhao
      * @time: 2020/11/26 21:23
@@ -79,4 +82,6 @@ public class AccountController {
         }
         return "FAILE";
     }
+
+
 }

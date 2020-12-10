@@ -4,7 +4,6 @@ import IDCC.bean.Subject;
 import IDCC.service.SubjectServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,7 +50,7 @@ public class SubjectController {
 
     /**
      * @description: 控制查找项目信息操作
-     * @return: Subject对象
+     * @return: SUCCESS/FAILE
      * @author: Lai Zhouhao
      * @time: 2020/12/10 11:13
      */

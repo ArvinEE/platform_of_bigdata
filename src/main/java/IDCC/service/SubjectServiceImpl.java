@@ -1,6 +1,5 @@
 package IDCC.service;
 
-import IDCC.bean.Student;
 import IDCC.bean.Subject;
 import IDCC.mapper.SubjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
