@@ -1,6 +1,7 @@
 package IDCC.controller;
 
 import IDCC.bean.Account;
+import IDCC.bean.Student;
 import IDCC.bean.Teacher;
 import IDCC.service.AccountServiceImpl;
 import io.swagger.annotations.Api;
@@ -39,7 +40,7 @@ public class AccountController {
         model.addAttribute("account",account);
         //获取该账号是教师还是教师
         if(account.getAccountRight() == 2){
-            model.addAttribute("teacher",((Teacher)userInformation.get(1)));
+            model.addAttribute("student",((Student)userInformation.get(1)));
         }else{
             model.addAttribute("teacher",((Teacher)userInformation.get(1)));
         }
