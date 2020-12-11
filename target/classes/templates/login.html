@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>登录页</title>
+    <link rel="stylesheet" href="../../css/layui.css">
+    <link rel="stylesheet" href="../../css/style.css">
+
+</head>
+<body>
+
+<div class="login-main">
+    <header class="layui-elip">登录</header>
+    <form class="layui-form">
+        <div class="layui-input-inline">
+            <input type="text" name="account" required lay-verify="required" placeholder="账号" autocomplete="off"
+                   class="layui-input">
+        </div>
+        <div class="layui-input-inline">
+            <input type="password" name="password" required lay-verify="required" placeholder="密码" autocomplete="off"
+                   class="layui-input">
+        </div>
+        <div class="layui-input-inline login-btn">
+            <button lay-submit lay-filter="login" class="layui-btn">登录</button>
+        </div>
+        <hr/>
+        <p><a href="javascript:;" class="register">立即注册</a><a href="javascript:;" class="fr">忘记密码？</a></p>
+    </form>
+
+    <div id="moniItemModel"style="display: none">
+    <form class="layui-form" id="registerForm"  action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">昵称</label>
+            <div class="layui-input-block">
+                <input type="text" name="userName" required  lay-verify="required" placeholder="请输入昵称" autocomplete="off" class="layui-input" style="width: 200px;">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">账号</label>
+            <div class="layui-input-block">
+                <input type="text" name="account" required  lay-verify="required" placeholder="请输入账号，必须唯一" autocomplete="off" class="layui-input" style="width: 200px;">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-block">
+                <input type="text" name="pwd" required  lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input" style="width: 200px;">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">电话号码</label>
+            <div class="layui-input-block">
+                <input type="text" name="phone" required  lay-verify="required" placeholder="请输入电话号码" autocomplete="off" class="layui-input" style="width: 200px;">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户类型</label>
+            <div class="layui-input-block" style="width: 200px;">
+                <select name="type" lay-verify="required" >
+                    <option value=""></option>
+                    <option value="1">租户</option>
+                    <option value="2">租赁方</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+    <div id="forgetPwd"style="display: none">
+        <form class="layui-form" id="forgetPwdForm"  action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="account" required  lay-verify="required" placeholder="请输入用户名，必须唯一" autocomplete="off" class="layui-input" style="width: 200px;">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">电话号码</label>
+                <div class="layui-input-block">
+                    <input type="text" name="phone" required  lay-verify="required" placeholder="请输入电话号码" autocomplete="off" class="layui-input" style="width: 200px;">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">输入新密码</label>
+                <div class="layui-input-block">
+                    <input type="password" name="onePwd" id="newPwd1" required  lay-verify="required" placeholder="输入新密码" autocomplete="off" class="layui-input" style="width: 200px;">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">再次输入密码</label>
+                <div class="layui-input-block">
+                    <input type="password" name="twoPwd" id="newPwd2" required  lay-verify="required" placeholder="再次输入密码" autocomplete="off" class="layui-input" style="width: 200px;">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="forgetCommit">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+<script src="../../js/layui.js"></script>
+<script type="text/javascript">
+    layui.use(['form','layer','jquery'], function () {
+
+        // 操作对象
+        var form = layui.form;
+        var $ = layui.jquery;
+        form.on('submit(login)',function (data) {
+            console.log("data="+data.field);
+            $.ajax({
+                url:'/userLogin',
+                data:data.field,
+                dataType:'text',
+                type:'post',
+                success:function (data) {
+                    console.log("运行");
+                    if (data == 'SUCCESS'){
+                        layer.msg('登录成功，即将进入主页');
+                        setTimeout(function(){
+                            location.href = "index";
+                        },1000);
+                    }else if(data == "NONE"){
+                        layer.msg('账号不存在');
+                        setTimeout(function(){
+                            location.href = "login";
+                        },1000);
+                    }else{
+                        layer.msg('密码错误');
+                        // setTimeout(function(){
+                        //     location.href = "login";
+                        // },1000);
+                    }
+                }
+            })
+            return false;
+        })
+
+        //监听注册
+        form.on('submit(formDemo)', function(data){
+            console.log(JSON.stringify(data.field));
+            $.post("userRegister",$("#registerForm").serialize(),function(res){//
+                if(res=="OK"){
+                    layer.msg("注册成功！");
+                    setTimeout(function(){
+                        location.href = "login";
+                    },1000);
+                    // ,{icon:1,end:function(){window.location.href="addHouse";}});
+                    // $("#addHouseForm")[0].reset();
+                }else{
+                    layer.msg("注册失败，用户名已存在！");
+                }
+            })
+            return false;
+        });
+
+        //监听找回密码
+        form.on('submit(forgetCommit)', function(data){
+            console.log(JSON.stringify(data.field));
+            if($('#newPwd1').val() != $('#newPwd2').val()){
+                layer.msg("两次密码不一样！");
+                $('#newPwd2').val("");
+                return false;
+            }
+            $.post("forgetPwd",$("#forgetPwdForm").serialize(),function(res){//
+                if(res=="OK"){
+                    layer.msg("修改密码成功！");
+                    setTimeout(function(){
+                        location.href = "login";
+                    },1000);
+                    // ,{icon:1,end:function(){window.location.href="addHouse";}});
+                    // $("#addHouseForm")[0].reset();
+                }else if(res == "FALSE"){
+                    layer.msg("手机号验证失败！");
+                }else{
+                    layer.msg("用户不存在！");
+                }
+            })
+            return false;
+        });
+
+        //点击注册
+        $('.register').click(function(){
+            layer.open({
+                type:1,
+                title:['注册窗口', 'font-size:18px;'],
+                area:['400px','500px'],
+                btn:false,
+                offset: 't',
+                anim: 4,
+                shade: false,
+                shadeClose: true,
+                maxmin:false,
+                content:$('#moniItemModel'),
+                zIndex:layer.zIndex,
+            });
+        });
+
+        //店家忘记密码
+        $('.fr').click(function(){
+            layer.open({
+                type:1,
+                title:['找回密码窗口', 'font-size:18px;'],
+                area:['400px','500px'],
+                btn:false,
+                offset: 't',
+                anim: 5,
+                shade: false,
+                shadeClose: true,
+                maxmin:false,
+                content:$('#forgetPwd'),
+                zIndex:layer.zIndex,
+            });
+        });
+    });
+</script>
+</body>
+</html>
