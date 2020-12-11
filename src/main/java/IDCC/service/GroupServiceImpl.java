@@ -59,6 +59,7 @@ public class GroupServiceImpl implements GroupService {
      */
     @Override
     public int updateGroup(Mygroup group) {
+        System.out.println();
         return groupMapper.updateByPrimaryKey(group);
     }
 }
