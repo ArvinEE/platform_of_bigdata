@@ -1,6 +1,7 @@
 package IDCC.service;
 
 import IDCC.bean.Account;
+import IDCC.bean.AccountExample;
 import IDCC.bean.Teacher;
 import IDCC.mapper.AccountMapper;
 import IDCC.mapper.StudentMapper;
@@ -83,5 +84,30 @@ public class AccountServiceImpl implements AccountService{
             }
         }
         return userInformation;
+    }
+
+
+    /**
+     * @description: 查找一条账号信息（根据id）
+     * @return: Account对象
+     * @author: Lai Zhouhao
+     * @time: 2020/12/13 9:32
+     */
+    @Override
+    public Account searchAccount(String accountId) {
+        return accountMapper.selectByPrimaryKey(accountId);
+    }
+
+    /**
+     * @description: 查询多条账户信息（模糊查询）
+     * @return: List<Account>
+     * @author: Lai Zhouhao
+     * @time: 2020/12/13 20:48
+     */
+    @Override
+    public List<Account> searchAccountByExample(String condition) {
+        AccountExample accountExample = new AccountExample();
+        accountExample.createCriteria().andAccountIdLike("%"+condition+"%");
+        return accountMapper.selectByExample(accountExample);
     }
 }

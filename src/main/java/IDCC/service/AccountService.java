@@ -14,6 +14,10 @@ public interface AccountService {
     int insertOneRecord(Account account);
     //删除一条账号信息
     int deleteOneRecord(String accountId);
+    //查找一条账户信息
+    Account searchAccount(String accountId);
     //登录验证
     List<Object> userLogin(String accountId, String userPwd);
+    //模糊查询
+    List<Account> searchAccountByExample(String condition);
 }

@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.jws.WebParam;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -76,6 +78,43 @@ public class AccountController {
     public String deleteAccount(String accountId){
         int result = accountService.deleteOneRecord(accountId);
         if (result == 1){
+            return "SUCCESS";
+        }
+        return "FAILE";
+    }
+
+    /**
+     * @description: 控制查找一条账户信息
+     * @return: SUCCESS/FAILE
+     * @author: Lai Zhouhao
+     * @time: 2020/12/13 9:26
+     */
+    @GetMapping("/searchAccount")
+    @ApiOperation(value = "查找单条账户信息",notes = "未测试")
+    @ResponseBody
+    public String searchAccount(String accountId, Model model){
+        Account account = accountService.searchAccount(accountId);
+        if(account != null){
+            model.addAttribute("account",account);
+            return "SUCCESS";
+        }
+        return "FAILE";
+    }
+
+    /**
+     * @description: 控制模糊查找账户信息
+     * @return: SUCCESS/FAILE
+     * @author: Lai Zhouhao
+     * @time: 2020/12/13 9:26
+     */
+    @GetMapping("/searchAccountByExample")
+    @ApiOperation(value = "模糊查找账户信息",notes = "未测试")
+    @ResponseBody
+    public String searchAccountByExample(String condition, Model model){
+        List<Account> accountList = new ArrayList<>();
+        accountList = accountService.searchAccountByExample(condition);
+        if(accountList.size() != 0){
+            model.addAttribute("accountList",accountList);
             return "SUCCESS";
         }
         return "FAILE";
