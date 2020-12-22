@@ -27,16 +27,29 @@ public class AccountController {
     @Autowired
     private AccountServiceImpl accountService;
 
+
+    /**
+     * @description: 控制跳转到登录界面
+     * @return: 界面
+     * @author: Lai Zhouhao
+     * @time: 2020/12/22 18:54
+     */
+    @GetMapping("/login")
+    public String toLogin(){
+        return "login";
+    }
+
     /**
      * @description: 控制登录验证
      * @return: List<Object>
      * @author: Lai Zhouhao
      * @time: 2020/11/27 18:45
      */
-    @PostMapping("/login")
+    @GetMapping("/certifyLogin")
+    @ResponseBody
     @ApiOperation(value = "用户登录", notes = "21点00分 已测试")
-    public String userLogin(String accountId, String userPwd, Model model){
-        List<Object> userInformation = accountService.userLogin(accountId,userPwd);
+    public String userLogin(String userName, String password, Model model){
+        List<Object> userInformation = accountService.userLogin(userName,password);
         //获取账号信息
         Account account = (Account)userInformation.get(0);
         model.addAttribute("account",account);
@@ -46,7 +59,9 @@ public class AccountController {
         }else{
             model.addAttribute("teacher",((Teacher)userInformation.get(1)));
         }
-        return "index";
+        if(model.getAttribute("account") != null){
+            return "SUCCESS";
+        }return "FAILE";
     }
 
     /**

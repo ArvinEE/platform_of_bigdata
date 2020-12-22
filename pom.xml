@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>house_rental</artifactId>
+    <artifactId>platform_of_bigdata</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>house_rental</name>
-    <description>房屋租赁系统</description>
+    <name>platform_of_bigdata</name>
+    <description>大数据平台</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -158,7 +158,36 @@
     </dependencies>
 
     <build>
+<!--        <pluginManagement>-->
+<!--            <plugins>-->
+<!--                <plugin>-->
+<!--                    <groupId>org.apache.maven.plugins</groupId>-->
+<!--                    <artifactId>maven-jar-plugin</artifactId>-->
+<!--                    <configuration>-->
+
+<!--                        <archive>-->
+<!--                            <manifest>-->
+<!--                                <mainClass>IDCC.MainApplication</mainClass>-->
+<!--                                <addClasspath>true</addClasspath>-->
+<!--                                <classpathPrefix>lib/</classpathPrefix>-->
+<!--                            </manifest>-->
+
+<!--                        </archive>-->
+<!--                        <classesDirectory>-->
+<!--                        </classesDirectory>-->
+<!--                    </configuration>-->
+<!--                </plugin>-->
+<!--            </plugins>-->
+<!--        </pluginManagement>-->
         <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>IDCC.MainApplication</mainClass>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -174,6 +203,57 @@
                 <configuration>
                     <verbose>true</verbose>
                     <overwrite>false</overwrite>
+                </configuration>
+            </plugin>
+            <!--scala编译打包插件-->
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>scala-compile-first</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--java编译打包插件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>com.swordfall.restserver.base.WebServer</mainClass>
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
         </plugins>
