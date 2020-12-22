@@ -1,7 +1,5 @@
 package IDCC.service;
 
-import IDCC.bean.Mygroup;
-import IDCC.mapper.MygroupMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

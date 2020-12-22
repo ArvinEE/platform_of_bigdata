@@ -1,8 +1,5 @@
 package IDCC.controller;
 
-import IDCC.bean.Account;
-import IDCC.bean.Student;
-import IDCC.bean.Teacher;
 import IDCC.service.AccountServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -11,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.jws.WebParam;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,6 +1,5 @@
 package IDCC.controller;
 
-import IDCC.bean.Student;
 import IDCC.service.StudentServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
