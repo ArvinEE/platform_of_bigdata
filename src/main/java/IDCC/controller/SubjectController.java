@@ -1,5 +1,6 @@
 package IDCC.controller;
 
+import IDCC.bean.Subject;
 import IDCC.service.SubjectServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

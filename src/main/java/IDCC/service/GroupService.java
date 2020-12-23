@@ -1,5 +1,7 @@
 package IDCC.service;
 
+import IDCC.bean.Mygroup;
+
 /**
  * @description: 团队信息实现层接口
  * @author: Peng Chong

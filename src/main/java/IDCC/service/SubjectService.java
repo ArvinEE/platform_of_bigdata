@@ -1,5 +1,7 @@
 package IDCC.service;
 
+import IDCC.bean.Subject;
+
 /**
  * @description: 项目信息操作接口层
  * @author: Lai Zhouhao

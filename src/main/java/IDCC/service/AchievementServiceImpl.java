@@ -1,7 +1,14 @@
 package IDCC.service;
 
+import IDCC.bean.AccountExample;
+import IDCC.bean.Achievement;
+import IDCC.bean.AchievementExample;
+import IDCC.bean.TeacherExample;
+import IDCC.mapper.AchievementMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @description: 成果信息实现层
@@ -60,5 +67,18 @@ public class AchievementServiceImpl implements AchievementService {
     @Override
     public int updateAchievement(Achievement achievement) {
         return achievementMapper.updateByPrimaryKey(achievement);
+    }
+
+    /**
+     * @description: 查询多条成果信息（模糊查询）
+     * @return: List<Achievement>
+     * @author: Peng Chong
+     * @time: 2020/12/23 16:36
+     */
+    @Override
+    public List<Achievement> searchAchievementByExample(int condition) {
+        AchievementExample achievementExample = new AchievementExample();
+        achievementExample.createCriteria().andAchievementIdLike("%"+condition+"%");
+        return achievementMapper.selectByExample(achievementExample);
     }
 }

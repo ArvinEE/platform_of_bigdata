@@ -1,5 +1,7 @@
 package IDCC.service;
 
+import IDCC.bean.Mygroup;
+import IDCC.mapper.MygroupMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class GroupServiceImpl implements GroupService {
 
     @Autowired
-    private  MygroupMapper groupMapper;
+    private MygroupMapper groupMapper;
 
     /**
      * @description: 增加单条团队信息

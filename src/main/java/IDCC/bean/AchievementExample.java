@@ -209,6 +209,12 @@ public class AchievementExample {
             return (Criteria) this;
         }
 
+//        2020/12/23测试
+        public Criteria andAchievementIdLike(String value) {
+            addCriterion("Achievement_Id like", value, "achievementId");
+            return (Criteria) this;
+        }
+
         public Criteria andAchievementIdNotEqualTo(Integer value) {
             addCriterion("Achievement_Id <>", value, "achievementId");
             return (Criteria) this;

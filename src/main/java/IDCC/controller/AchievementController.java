@@ -1,14 +1,19 @@
 package IDCC.controller;
 
+import IDCC.bean.Account;
+import IDCC.bean.Achievement;
 import IDCC.service.AchievementServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @description: 控制成果信息的操作
@@ -88,5 +93,20 @@ public class AchievementController {
             return "SUCCESS";
         }
         return "FAILE";
+    }
+
+    /**
+     * @description: 控制模糊查找成果信息（根据Id）
+     * @return: SUCCESS/FAILE
+     * @author: Peng Chong
+     * @time: 2020/12/23 17:56
+     */
+    @GetMapping("/searchAchievementByExample")
+    @ApiOperation(value = "模糊查找成果信息",notes = "未测试")
+    @ResponseBody
+    public List searchAchievementByExample(int condition, Model model){
+        List<Achievement> achievementList = new ArrayList<>();
+        achievementList = achievementService.searchAchievementByExample(condition);
+        return achievementList;
     }
 }

@@ -51,6 +51,7 @@
                 <table tableName="achievement"></table>
                 <table tableName="mygroup"></table>
                 <table tableName="priindex"></table>
+                <table tableName="secindex"></table>
                 <table tableName="student"></table>
                 <table tableName="subject"></table>
                 <table tableName="teacher"></table>

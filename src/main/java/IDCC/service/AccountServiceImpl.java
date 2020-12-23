@@ -1,5 +1,11 @@
 package IDCC.service;
 
+import IDCC.bean.Account;
+import IDCC.bean.AccountExample;
+import IDCC.bean.Teacher;
+import IDCC.mapper.AccountMapper;
+import IDCC.mapper.StudentMapper;
+import IDCC.mapper.TeacherMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

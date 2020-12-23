@@ -1,5 +1,6 @@
 package IDCC.controller;
 
+import IDCC.bean.Mygroup;
 import IDCC.service.GroupServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
