@@ -1,9 +1,13 @@
 package IDCC.service;
 
+import IDCC.bean.AchievementExample;
 import IDCC.bean.Mygroup;
+import IDCC.bean.MygroupExample;
 import IDCC.mapper.MygroupMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @description: 团队信息实现层
@@ -61,5 +65,18 @@ public class GroupServiceImpl implements GroupService {
     public int updateGroup(Mygroup group) {
         System.out.println();
         return groupMapper.updateByPrimaryKey(group);
+    }
+
+    /**
+     * @description: 查询多条团队信息（Id模糊查询）
+     * @return: List<Mygroup>
+     * @author: Peng Chong
+     * @time: 2020/12/23 18:21
+     */
+    @Override
+    public List<Mygroup> searchGroupByExample(int condition) {
+        MygroupExample mygroupExample = new MygroupExample();
+        mygroupExample.createCriteria().andGroupIdIdLike("%"+condition+"%");
+        return groupMapper.selectByExample(mygroupExample);
     }
 }

@@ -209,7 +209,7 @@ public class AchievementExample {
             return (Criteria) this;
         }
 
-//        2020/12/23测试
+//      2020/12/23
         public Criteria andAchievementIdLike(String value) {
             addCriterion("Achievement_Id like", value, "achievementId");
             return (Criteria) this;

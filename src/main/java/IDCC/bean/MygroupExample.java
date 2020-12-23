@@ -215,6 +215,12 @@ public class MygroupExample {
             return (Criteria) this;
         }
 
+//      2020/12/23
+        public Criteria andGroupIdIdLike(String value) {
+            addCriterion("Group_Id like", value, "groupId");
+            return (Criteria) this;
+        }
+
         public Criteria andGroupIdGreaterThan(Integer value) {
             addCriterion("Group_Id >", value, "groupId");
             return (Criteria) this;
