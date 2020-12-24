@@ -70,7 +70,7 @@ public class AchievementServiceImpl implements AchievementService {
     }
 
     /**
-     * @description: 查询多条成果信息（模糊查询）
+     * @description: 查询多条成果信息（Id模糊查询）
      * @return: List<Achievement>
      * @author: Peng Chong
      * @time: 2020/12/23 16:36

@@ -1,15 +1,19 @@
 package IDCC.controller;
 
+import IDCC.bean.Achievement;
 import IDCC.bean.Mygroup;
 import IDCC.service.GroupServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @description: 控制团队信息的操作
@@ -89,5 +93,20 @@ public class GroupController {
             return "SUCCESS";
         }
         return "FAILE";
+    }
+
+    /**
+     * @description: 控制模糊查找团队信息（根据Id）
+     * @return: SUCCESS/FAILE
+     * @author: Peng Chong
+     * @time: 2020/12/23 18:40
+     */
+    @GetMapping("/searchGroupByExample")
+    @ApiOperation(value = "模糊查找团队信息",notes = "未测试")
+    @ResponseBody
+    public List searchAchievementByExample(int condition, Model model){
+        List<Mygroup> groupsList = new ArrayList<>();
+        groupsList = groupService.searchGroupByExample(condition);
+        return groupsList;
     }
 }
