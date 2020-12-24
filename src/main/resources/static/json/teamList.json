@@ -1,0 +1,27 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 3,
+  "data": [
+    {
+      "teamsId": "1",
+      "teamId": "1",
+      "teamName": "大数据",
+      "teamNum": "9",
+      "teamDesc" : "layuiCMS作者，原名‘请叫我马哥’"
+    },{
+      "teamsId": "2",
+      "teamId": "2",
+      "teamName": "无人机",
+      "teamNum": "20",
+      "teamDesc" : "layui框架作者，性别至今是个谜。。。"
+    },
+    {
+      "teamsId": "3",
+      "teamId": "3",
+      "teamName": "无人车",
+      "teamNum": "15",
+      "teamDesc" : "fly社区管理员，据传与layui作者有奸情，故帐号被封。"
+    }
+  ]
+}

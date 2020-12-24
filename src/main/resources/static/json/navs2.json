@@ -1,0 +1,68 @@
+ [
+		{
+			"title": "信息管理",
+			"icon": "&#xe63c;",
+			"href": "",
+			"spread": false,
+			"children": [
+				{
+					"title": "课题组信息",
+					"icon": "",
+					"href": "page/team/teamList.html",
+					"spread": false
+				},
+				{
+					"title": "老师信息",
+					"icon": "",
+					"href": "page/teacher/teacherList.html",
+					"spread": false
+				},
+				{
+					"title": "学生信息",
+					"icon": "",
+					"href": "page/student/studentList.html",
+					"spread": false
+				},
+				{
+					"title": "项目信息",
+					"icon": "",
+					"href": "page/project/projectList.html ",
+					"spread": false	
+				},
+				{
+					"title": "成果信息",
+					"icon": "",
+					"href": "page/achievement/achievementList.html ",
+					"spread": false
+				}
+			]
+		},
+		{
+			"title": "权限管理",
+			"icon": "&#xe672;",
+			"href": "page/authority/authorityList.html",
+			"spread": false
+		},
+		{
+			"title": "其他页面",
+			"icon": "&#xe630;",
+			"href": "",
+			"spread": false,
+			"children": [
+				{
+					"title": "404页面",
+					"icon": "&#xe61c;",
+					"href": "page/404.html",
+					"spread": false
+				},
+				{
+					"title": "登录",
+					"icon": "&#xe609;",
+					"href": "page/login/login.html",
+					"spread": false,
+					"target": "_blank"
+				}
+			]
+		}
+	]
+

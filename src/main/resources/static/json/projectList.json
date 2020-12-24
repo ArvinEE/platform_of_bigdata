@@ -1,0 +1,39 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 3,
+  "data": [
+    {
+      "projectsId": "1",
+      "projectId": "1",
+      "projectName": "医疗大数据",
+	  "projectTeam": "大数据",
+      "projectTeacher": "小张",
+	  "projectStartTime": "2018/08/08",
+	  "projectEndTime": "2020/08/08",
+	  "projectProgress": "30%",
+	  "projectLevel1": "projectLevel1List"
+    },{
+      "projectsId": "2",
+      "projectId": "2",
+      "projectName": "工业大数据",
+	  "projectTeam": "大数据",
+      "projectTeacher": "小张",
+	  "projectStartTime": "2018/08/08",
+	  "projectEndTime": "2020/08/08",
+	  "projectProgress": "30%",
+	  "projectLevel1": "查看"
+    },
+    {
+      "projectsId": "3",
+      "projectId": "3",
+      "projectName": "水栖两路无人机",
+	  "projectTeam": "无人机",
+      "projectTeacher": "小明",
+	  "projectStartTime": "2018/08/08",
+	  "projectEndTime": "2020/08/08",
+      "projectProgress": "30%",
+	  "projectLevel1": "查看"
+    }
+  ]
+}

@@ -21,6 +21,7 @@ import java.util.List;
  */
 @Controller
 @Api(value = "账户操作控制层")
+@CrossOrigin
 @RequestMapping("/account")
 public class AccountController {
     @Autowired
@@ -35,7 +36,18 @@ public class AccountController {
      */
     @GetMapping("/login")
     public String toLogin(){
-        return "login";
+        return "page/login/login";
+    }
+
+    /**
+     * @description: 控制到跳转到主界面
+     * @return: 界面
+     * @author: Lai Zhouhao
+     * @time: 2020/12/22 18:54
+     */
+    @GetMapping("/index")
+    public String toIndex(){
+        return "index";
     }
 
     /**

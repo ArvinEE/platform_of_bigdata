@@ -1,0 +1,33 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 3,
+  "data": [
+    {
+      "teachersId": "1",
+      "teacherId": "1",
+	  "teacherJobNum": "2112001111",
+      "teacherName": "小明",
+      "teacherTitle": "教授",
+	  "teacherTeam": "无人机",
+      "teacherDesc" : "layuiCMS作者，原名‘请叫我马哥’"
+    },{
+      "teachersId": "2",
+      "teacherId": "2",
+	  "teacherJobNum": "2112001112",
+      "teacherName": "小张",
+      "teacherTitle": "副教授",
+	  "teacherTeam": "无人车",
+      "teacherDesc" : "layui框架作者，性别至今是个谜。。。"
+    },
+    {
+      "teachersId": "3",
+      "teacherId": "3",
+	  "teacherJobNum": "2112001113",
+      "teacherName": "小李",
+      "teacherTitle": "讲师",
+	  "teacherTeam": "机器人",
+      "teacherDesc" : "fly社区管理员，据传与layui作者有奸情，故帐号被封。"
+    }
+  ]
+}

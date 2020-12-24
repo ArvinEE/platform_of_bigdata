@@ -1,0 +1,30 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 3,
+  "data": [
+    {
+      "projectsLevel2Id": "1",
+      "projectLevel2Id": "1",
+      "projectLevel1Indicator": "医疗大数据",
+	  "projectLevel2Indicator": "基于全流程的审核模型建立",
+	  "projectLevel2IndicatorName": "基于全流程的审核模型建立",
+      "projectLevel2Status": "完成一半"
+    },{
+      "projectsLevel2Id": "2",
+      "projectLevel2Id": "2",
+      "projectLevel1Indicator": "医疗大数据",
+      "projectLevel2Indicator": "基于全流程的审核模型建立",
+	  "projectLevel2IndicatorName": "基于全流程的审核模型建立",
+      "projectLevel2Status": "完成一半"
+    },
+    {
+      "projectsLevel2Id": "3",
+      "projectLevel2Id": "3",
+      "projectLevel1Indicator": "医疗大数据",
+      "projectLevel2Indicator": "基于全流程的审核模型建立",
+	  "projectLevel2IndicatorName": "基于全流程的审核模型建立",
+      "projectLevel2Status": "完成一半"
+    }
+  ]
+}
