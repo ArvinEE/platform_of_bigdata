@@ -34,21 +34,10 @@ public class AccountController {
      * @author: Lai Zhouhao
      * @time: 2020/12/22 18:54
      */
-    @GetMapping("/login")
-    public String toLogin(){
-        return "page/login/login";
-    }
-
-    /**
-     * @description: 控制到跳转到主界面
-     * @return: 界面
-     * @author: Lai Zhouhao
-     * @time: 2020/12/22 18:54
-     */
-    @GetMapping("/index")
-    public String toIndex(){
-        return "index";
-    }
+//    @GetMapping("/login")
+//    public String toLogin(){
+//        return "page/login/login";
+//    }
 
     /**
      * @description: 控制登录验证
@@ -72,7 +61,8 @@ public class AccountController {
         }
         if(model.getAttribute("account") != null){
             return "SUCCESS";
-        }return "FAILE";
+        }
+        return "FAILE";
     }
 
     /**

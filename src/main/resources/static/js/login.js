@@ -12,33 +12,30 @@ layui.use(['form','layer','jquery'],function(){
     //登录按钮
     form.on("submit(login)",function(data){
         $(this).text("登录中...").attr("disabled","disabled").addClass("layui-disabled");
+        console.log(data.field);
 		$.ajax({
-		    url:'/account/login',
+		    url:'/account/certifyLogin',
 		    data:data.field,
 		    dataType:'text',
 		    type:'get',
 		    success:function (data) {
+                layer.msg('登录成功');
 		        if (data == 'SUCCESS'){
 		            layer.msg('登录成功，即将进入主页');
 		            setTimeout(function(){
-		                location.href = "/account/index";
-		            },1000);
-		        }else if(data == "NONE"){
-		            layer.msg('账号不存在');
-		            setTimeout(function(){
-		                location.href = "/pagedesign/index.html";
+		                location.href = "/page/index";
 		            },1000);
 		        }else{
-		            layer.msg('密码错误');
-		            // setTimeout(function(){
-		            //     location.href = "login";
-		            // },1000);
+		            layer.msg('账号不存在或密码错误');
+		            setTimeout(function(){
+		                location.href = "/page/login";
+		            },1000);
 		        }
-		    }
+		    },
+            error:function (){
+                layer.msg("页面走丢了");
+            }
 		})
-        /* setTimeout(function(){
-            window.location.href = "/pagedesign/index.html";
-        },1000); */
         return false;
     })
 

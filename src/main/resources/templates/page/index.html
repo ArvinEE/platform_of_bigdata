@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="utf-8">
 		<title>团队信息管理系统</title>
@@ -10,9 +10,9 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="format-detection" content="telephone=no">
-		<link rel="icon" href="favicon.ico">
-		<link rel="stylesheet" href="layui/css/layui.css" media="all" />
-		<link rel="stylesheet" href="css/index.css" media="all" />
+		<link rel="icon" href="../favicon.ico">
+		<link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../css/index.css" media="all" />
 	</head>
 	<body class="main_body">
 		<div class="layui-layout layui-layout-admin">
@@ -57,7 +57,7 @@
 						<a href="javascript:;"><i class="seraph icon-lock"></i><cite>锁屏</cite></a>
 					</li> -->
 						<li class="layui-nav-item" id="userInfo">
-							<a href="javascript:;"><img src="images/xiaohui.jpg" class="layui-nav-img userAvatar" width="35" height="35"><cite
+							<a href="javascript:;"><img src="../../images/xiaohui.jpg" class="layui-nav-img userAvatar" width="35" height="35"><cite
 								 class="adminName">超级管理员</cite></a>
 							<dl class="layui-nav-child">
 								<dd><a href="javascript:;" data-url="page/user/userInfo.html"><i class="seraph icon-ziliao" data-icon="icon-ziliao"></i><cite>个人资料</cite></a></dd>
@@ -65,7 +65,7 @@
 								<!-- <dd><a href="javascript:;" class="showNotice"><i class="layui-icon">&#xe645;</i><cite>系统公告</cite><span class="layui-badge-dot"></span></a></dd> -->
 								<!-- <dd pc><a href="javascript:;" class="functionSetting"><i class="layui-icon">&#xe620;</i><cite>功能设定</cite><span class="layui-badge-dot"></span></a></dd>
 							<dd pc><a href="javascript:;" class="changeSkin"><i class="layui-icon">&#xe61b;</i><cite>更换皮肤</cite></a></dd> -->
-								<dd><a href="page/login/login.html" class="signOut"><i class="seraph icon-tuichu"></i><cite>退出</cite></a></dd>
+								<dd><a href="login/login.html" class="signOut"><i class="seraph icon-tuichu"></i><cite>退出</cite></a></dd>
 							</dl>
 						</li>
 					</ul>
@@ -74,7 +74,7 @@
 			<!-- 左侧导航 -->
 			<div class="layui-side layui-bg-black">
 				<div class="user-photo">
-					<a class="img" title="我的头像"><img src="images/xiaohui.jpg" class="userAvatar"></a>
+					<a class="img" title="我的头像"><img src="../../images/xiaohui.jpg" class="userAvatar"></a>
 					<p>你好！<span class="userName">超级管理员</span>, 欢迎登录</p>
 				</div>
 				<!-- 搜索 -->
@@ -112,7 +112,7 @@
 					</ul>
 					<div class="layui-tab-content clildFrame">
 						<div class="layui-tab-item layui-show">
-							<iframe src="page/main.html"></iframe>
+							<iframe href="/main.html"></iframe>
 						</div>
 					</div>
 				</div>
@@ -127,8 +127,8 @@
 		<div class="site-tree-mobile"><i class="layui-icon">&#xe602;</i></div>
 		<div class="site-mobile-shade"></div>
 
-		<script type="text/javascript" src="layui/layui.js"></script>
-		<script type="text/javascript" src="js/index.js"></script>
-		<script type="text/javascript" src="js/cache.js"></script>
+		<script type="text/javascript" src="../../layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/index.js"></script>
+		<script type="text/javascript" src="../../js/cache.js"></script>
 	</body>
 </html>
