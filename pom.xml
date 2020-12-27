@@ -155,6 +155,13 @@
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
         </dependency>
+
+<!--        引入jquery-->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.3.1-2</version>
+        </dependency>
     </dependencies>
 
     <build>
