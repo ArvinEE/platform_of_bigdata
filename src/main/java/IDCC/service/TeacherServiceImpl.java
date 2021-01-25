@@ -1,6 +1,8 @@
 package IDCC.service;
 
 import IDCC.bean.Teacher;
+import IDCC.mapper.MygroupMapper;
+import IDCC.mapper.TeacherMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TeacherServiceImpl implements TeacherService{
     @Autowired
-    private TeacherService teacherMapper;
+    private TeacherMapper teacherMapper;
     /**
      * @description: 增加单条教师信息
      * @return: 0/1
@@ -21,7 +23,7 @@ public class TeacherServiceImpl implements TeacherService{
      */
     @Override
     public int addTeacher(Teacher Teacher) {
-        return teacherMapper.addTeacher(Teacher);
+        return teacherMapper.insert(Teacher);
     }
 
     /**
@@ -32,7 +34,7 @@ public class TeacherServiceImpl implements TeacherService{
      */
     @Override
     public int delTeacher(String TeacherId) {
-        return teacherMapper.delTeacher(TeacherId);
+        return teacherMapper.deleteByPrimaryKey(TeacherId);
     }
 
     /**
@@ -43,7 +45,7 @@ public class TeacherServiceImpl implements TeacherService{
      */
     @Override
     public Teacher searchTeacher(String TeacherId) {
-        Teacher Teacher = teacherMapper.searchTeacher(TeacherId);
+        Teacher Teacher = teacherMapper.selectByPrimaryKey(TeacherId);
         return Teacher;
     }
 
@@ -55,6 +57,6 @@ public class TeacherServiceImpl implements TeacherService{
      */
     @Override
     public int updateTeacher(Teacher Teacher) {
-        return teacherMapper.updateTeacher(Teacher);
+        return teacherMapper.updateByPrimaryKey(Teacher);
     }
 }
