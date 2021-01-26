@@ -8,31 +8,31 @@
 				{
 					"title": "课题组信息",
 					"icon": "",
-					"href": "page/team/teamList.html",
+					"href": "/page/team",
 					"spread": false
 				},
 				{
 					"title": "老师信息",
 					"icon": "",
-					"href": "page/teacher/teacherList.html",
+					"href": "/page/teacher",
 					"spread": false
 				},
 				{
 					"title": "学生信息",
 					"icon": "",
-					"href": "page/student/studentList.html",
+					"href": "/page/student",
 					"spread": false
 				},
 				{
 					"title": "项目信息",
 					"icon": "",
-					"href": "page/project/projectList.html ",
+					"href": "/page/project",
 					"spread": false	
 				},
 				{
 					"title": "成果信息",
 					"icon": "",
-					"href": "page/achievement/achievementList.html ",
+					"href": "/page/achievement",
 					"spread": false
 				}
 			]
@@ -40,7 +40,7 @@
 		{
 			"title": "权限管理",
 			"icon": "&#xe672;",
-			"href": "page/authority/authorityList.html",
+			"href": "/page/authority",
 			"spread": false
 		},
 		{
@@ -52,13 +52,13 @@
 				{
 					"title": "404页面",
 					"icon": "&#xe61c;",
-					"href": "page/404.html",
+					"href": "/page/404",
 					"spread": false
 				},
 				{
 					"title": "登录",
 					"icon": "&#xe609;",
-					"href": "page/login/login.html",
+					"href": "/page/login",
 					"spread": false,
 					"target": "_blank"
 				}

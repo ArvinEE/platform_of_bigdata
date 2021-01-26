@@ -24,6 +24,90 @@ public class SkipPageController {
     public String toIndex(){
         return "/page/index";
     }
+    
+    /**
+     * @description: 控制跳转到课题组信息界面
+     * @return: 界面
+     * @author: Lai Zhouhao
+     * @time: 2021/1/26 22:48
+     */
+    @GetMapping("team")
+    @ApiOperation(value = "跳转到team界面",notes = "已测试")
+    public String toTeam(){
+        return "/page/team/teamList";
+    }
+
+    /**
+     * @description: 控制跳转到教师信息界面
+     * @return: 界面
+     * @author: Lai Zhouhao
+     * @time: 2021/1/26 22:48
+     */
+    @GetMapping("teacher")
+    @ApiOperation(value = "跳转到teacher界面",notes = "已测试")
+    public String toTeacher(){
+        return "/page/teacher/teacherList";
+    }
+
+    /**
+     * @description: 控制跳转到学生信息界面
+     * @return: 界面
+     * @author: Lai Zhouhao
+     * @time: 2021/1/26 22:48
+     */
+    @GetMapping("student")
+    @ApiOperation(value = "跳转到student界面",notes = "已测试")
+    public String toStudent(){
+        return "/page/student/studentList";
+    }
+
+    /**
+     * @description: 控制跳转到项目信息界面
+     * @return: 界面
+     * @author: Lai Zhouhao
+     * @time: 2021/1/26 22:48
+     */
+    @GetMapping("project")
+    @ApiOperation(value = "跳转到project界面",notes = "已测试")
+    public String toProject(){
+        return "/page/project/projectList";
+    }
+
+    /**
+     * @description: 控制跳转到成果信息界面
+     * @return: 界面
+     * @author: Lai Zhouhao
+     * @time: 2021/1/26 22:48
+     */
+    @GetMapping("achievement")
+    @ApiOperation(value = "跳转到achievement界面",notes = "已测试")
+    public String toAchievement(){
+        return "/page/achievement/achievementList";
+    }
+
+    /**
+     * @description: 控制跳转到权限信息界面
+     * @return: 界面
+     * @author: Lai Zhouhao
+     * @time: 2021/1/26 22:48
+     */
+    @GetMapping("authority")
+    @ApiOperation(value = "跳转到authority界面",notes = "已测试")
+    public String toAuthority(){
+        return "/page/authority/authorityList";
+    }
+
+    /**
+     * @description: 控制跳转到404信息界面
+     * @return: 界面
+     * @author: Lai Zhouhao
+     * @time: 2021/1/26 22:48
+     */
+    @GetMapping("404")
+    @ApiOperation(value = "跳转到404界面",notes = "已测试")
+    public String toFourZeroFour(){
+        return "/page/404";
+    }
 
     /**
      * @description: 控制跳转到登录界面
