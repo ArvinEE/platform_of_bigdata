@@ -65,30 +65,4 @@ public class TeacherServiceImpl implements TeacherService{
         return teacherMapper.updateByPrimaryKey(Teacher);
     }
 
-    /**
-     * @description: 查询教师人数
-     * @return: map
-     * @author: Peng Chong
-     * @time: 2021/1/26 18:02
-     */
-    @Override
-    public Map<String, Integer> countTeacher() {
-        List<HashMap<String, Integer>> list = teacherMapper.countTeacher();
-        Map<String,Integer> map = new HashMap<>();
-        if (list != null && !list.isEmpty()) {
-            for (HashMap<String, Integer> map1 : list) {
-                String key = null;
-                int value = 0;
-                for (Map.Entry<String, Integer> entry : map1.entrySet()) {
-                    if ("key".equals(entry.getKey())) {
-                        key = entry.getValue().toString();
-                    } else if ("value".equals(entry.getKey())) {
-                        value = entry.getValue();
-                    }
-                }
-                map.put(key, value);
-            }
-        }
-        return map;
-    }
 }
