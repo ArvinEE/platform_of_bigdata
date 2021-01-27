@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 
 
 /**
@@ -89,5 +90,18 @@ public class TeacherController {
             return "SUCCESS";
         }
         return "FAILE";
+    }
+
+    /**
+     * @description: 查询教师数量
+     * @return: HashMap
+     * @author: Peng Chong
+     * @time: 2021/1/27 17:56
+     */
+    @GetMapping("/countTeacher")
+    @ApiOperation(value = "查询教师数量",notes = "未测试")
+    @ResponseBody
+    public HashMap<String, Integer> countTeacher(){
+        return teacherService.countTeacher();
     }
 }

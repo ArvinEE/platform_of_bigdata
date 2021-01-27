@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -95,16 +96,14 @@ public class StudentController {
     }
     /**
      * @description: 查询学生数量
-     * @return: int
+     * @return: HashMap
      * @author: Peng Chong
-     * @time: 2021/1/26 15:47
+     * @time: 2021/1/27 18:35
      */
     @GetMapping("/countStudent")
     @ApiOperation(value = "查询学生数量",notes = "未测试")
     @ResponseBody
-    public int countStudent(){
-        if (studentService.countStudent()>0)
-            return studentService.countStudent();
-        return 0;
+    public HashMap<String, Integer> countStudent(){
+        return studentService.countStudent();
     }
 }

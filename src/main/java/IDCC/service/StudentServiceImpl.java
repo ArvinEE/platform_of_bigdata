@@ -5,6 +5,8 @@ import IDCC.mapper.StudentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+
 /**
  * @description: 教师信息实现层
  * @author: Lai Zhouhao
@@ -61,12 +63,15 @@ public class StudentServiceImpl implements StudentService{
 
     /**
      * @description: 查询学生数量
-     * @return: int
+     * @return: HashMap
      * @author: Peng Chong
-     * @time: 2021/1/26 15:28
+     * @time: 2021/1/27 18:31
      */
     @Override
-    public int countStudent() {
-        return studentMapper.countStudent();
+    public HashMap<String, Integer> countStudent() {
+        HashMap<String , Integer> Num = new HashMap<String , Integer>();
+        Num.put("研究生",studentMapper.countGraduate());
+        Num.put("博士",studentMapper.countDoctor());
+        return Num;
     }
 }
