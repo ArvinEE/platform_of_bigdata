@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @description: 控制教师信息的操作
@@ -88,5 +92,17 @@ public class TeacherController {
             return "SUCCESS";
         }
         return "FAILE";
+    }
+    /**
+     * @description: 查询教师数量
+     * @return: map
+     * @author: Peng Chong
+     * @time: 2021/1/26 18:05
+     */
+    @GetMapping("/countTeacher")
+    @ApiOperation(value = "查询教师数量",notes = "未测试")
+    @ResponseBody
+    public Map<String, Integer> countTeacher(){
+        return teacherService.countTeacher();
     }
 }

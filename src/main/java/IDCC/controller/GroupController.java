@@ -109,4 +109,5 @@ public class GroupController {
         groupsList = groupService.searchGroupByExample(condition);
         return groupsList;
     }
+
 }

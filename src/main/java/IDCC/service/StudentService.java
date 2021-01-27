@@ -16,4 +16,6 @@ public interface StudentService {
     public Student searchStudent(String studentId);
     //修改单条教师信息
     public int updateStudent(Student student);
+    //学生数量
+    public int countStudent();
 }

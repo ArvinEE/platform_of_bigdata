@@ -58,4 +58,15 @@ public class StudentServiceImpl implements StudentService{
     public int updateStudent(Student Student) {
         return studentMapper.updateByPrimaryKey(Student);
     }
+
+    /**
+     * @description: 查询学生数量
+     * @return: int
+     * @author: Peng Chong
+     * @time: 2021/1/26 15:28
+     */
+    @Override
+    public int countStudent() {
+        return studentMapper.countStudent();
+    }
 }
