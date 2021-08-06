@@ -49,12 +49,12 @@ public class AccountServiceImpl implements AccountService{
      * @time: 2020/11/27 19:02
      */
     @Override
-    public List<Object> userLogin(String accountId, String userPwd) {
+    public List<Object> userLogin(String userName, String userPwd) {
         List<Object> userInformation = new LinkedList<>();
         //查找账号
         Account account = new Account();
         try {
-            account = accountMapper.selectByPrimaryKey(accountId);
+            account = accountMapper.selectByPrimaryKey(userName);
             userInformation.add(account);
         }catch (NullPointerException e){
             System.out.println(e);
@@ -64,12 +64,14 @@ public class AccountServiceImpl implements AccountService{
             return null;
         }
         if (!account.getAccountPwd().equals(userPwd)){
-            return null;
+            userInformation.remove(0);
+            userInformation.add(null);
+            return userInformation;
         }
         //将账户信息、该用户个人信息返回
         if (account.getAccountRight() == 2){
             try {
-                Teacher teacher = teacherMapper.selectByPrimaryKey(accountId);
+                Teacher teacher = teacherMapper.selectByPrimaryKey(userName);
                 userInformation.add(teacher);
             }catch (Exception e){
                 System.out.println(e);
@@ -77,7 +79,7 @@ public class AccountServiceImpl implements AccountService{
         }
         if (account.getAccountRight() == 1){
             try {
-                Teacher teacher = teacherMapper.selectByPrimaryKey(accountId);
+                Teacher teacher = teacherMapper.selectByPrimaryKey(userName);
                 userInformation.add(teacher);
             }catch (Exception e){
                 System.out.println(e);

@@ -1,6 +1,5 @@
 package IDCC.controller;
 
-import IDCC.bean.Account;
 import IDCC.bean.Achievement;
 import IDCC.service.AchievementServiceImpl;
 import io.swagger.annotations.Api;

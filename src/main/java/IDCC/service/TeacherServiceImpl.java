@@ -2,13 +2,10 @@ package IDCC.service;
 
 import IDCC.bean.Teacher;
 import IDCC.mapper.TeacherMapper;
-import org.apache.ibatis.annotations.MapKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -78,19 +75,18 @@ public class TeacherServiceImpl implements TeacherService{
         int Lecturer=0;
         int postdoctoral=0;
         HashMap<String , Integer> Num = new HashMap<String , Integer>();
-        for (String title:teacherMapper.selectByStaffTitle()
-             ) {
-            switch (title){
-                case "教授" :Professor++;break;
-                case "副教授" :associateProfessor++;break;
-                case "讲师" :Lecturer++;break;
-                case "博士后" :postdoctoral++;break;
-            }
-        }
-        Num.put("教授",Professor);
-        Num.put("副教授",associateProfessor);
-        Num.put("讲师",Lecturer);
-        Num.put("博士后",postdoctoral);
+//        for (String title:teacherMapper.selectByStaffTitle()) {
+//            switch (title){
+//                case "教授" :Professor++;break;
+//                case "副教授" :associateProfessor++;break;
+//                case "讲师" :Lecturer++;break;
+//                case "博士后" :postdoctoral++;break;
+//            }
+//        }
+//        Num.put("教授",Professor);
+//        Num.put("副教授",associateProfessor);
+//        Num.put("讲师",Lecturer);
+//        Num.put("博士后",postdoctoral);
         return Num;
     }
 

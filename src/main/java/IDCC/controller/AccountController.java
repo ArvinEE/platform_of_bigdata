@@ -22,7 +22,7 @@ import java.util.List;
 @Controller
 @Api(value = "账户操作控制层")
 @CrossOrigin
-@RequestMapping("/account")
+@RequestMapping("/user")
 public class AccountController {
     @Autowired
     private AccountServiceImpl accountService;
@@ -45,24 +45,13 @@ public class AccountController {
      * @author: Lai Zhouhao
      * @time: 2020/11/27 18:45
      */
-    @GetMapping("/certifyLogin")
+    @GetMapping("/userLogin")
     @ResponseBody
     @ApiOperation(value = "用户登录", notes = "21点00分 已测试")
-    public String userLogin(String userName, String password, Model model){
-        List<Object> userInformation = accountService.userLogin(userName,password);
-        //获取账号信息
-        Account account = (Account)userInformation.get(0);
-        model.addAttribute("account",account);
-        //获取该账号是教师还是教师
-        if(account.getAccountRight() == 2){
-            model.addAttribute("student",((Student)userInformation.get(1)));
-        }else{
-            model.addAttribute("teacher",((Teacher)userInformation.get(1)));
-        }
-        if(model.getAttribute("account") != null){
-            return "SUCCESS";
-        }
-        return "FAILE";
+    public int userLogin(String userName, String userPwd){
+        List<Object> userInformation = accountService.userLogin(userName,userPwd);
+        if (userInformation == null) return 0;
+        return userInformation.get(0)==null?-1:1;
     }
 
     /**

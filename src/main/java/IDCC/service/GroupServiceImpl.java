@@ -1,6 +1,5 @@
 package IDCC.service;
 
-import IDCC.bean.AchievementExample;
 import IDCC.bean.Mygroup;
 import IDCC.bean.MygroupExample;
 import IDCC.mapper.MygroupMapper;
@@ -76,7 +75,7 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public List<Mygroup> searchGroupByExample(int condition) {
         MygroupExample mygroupExample = new MygroupExample();
-        mygroupExample.createCriteria().andGroupIdIdLike("%"+condition+"%");
+//        mygroupExample.createCriteria().andGroupIdIdLike("%"+condition+"%");
         return groupMapper.selectByExample(mygroupExample);
     }
 }

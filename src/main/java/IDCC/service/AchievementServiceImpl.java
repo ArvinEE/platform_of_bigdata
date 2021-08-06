@@ -1,9 +1,7 @@
 package IDCC.service;
 
-import IDCC.bean.AccountExample;
 import IDCC.bean.Achievement;
 import IDCC.bean.AchievementExample;
-import IDCC.bean.TeacherExample;
 import IDCC.mapper.AchievementMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -78,7 +76,7 @@ public class AchievementServiceImpl implements AchievementService {
     @Override
     public List<Achievement> searchAchievementByExample(int condition) {
         AchievementExample achievementExample = new AchievementExample();
-        achievementExample.createCriteria().andAchievementIdLike("%"+condition+"%");
+//        achievementExample.createCriteria().andAchievementIdLike("%"+condition+"%");
         return achievementMapper.selectByExample(achievementExample);
     }
 }

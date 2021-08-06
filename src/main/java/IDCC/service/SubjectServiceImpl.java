@@ -34,7 +34,7 @@ public class SubjectServiceImpl implements SubjectService{
      */
     @Override
     public int delSubject(String subjectId) {
-        return subjectMapper.deleteByPrimaryKey(subjectId);
+        return subjectMapper.deleteByPrimaryKey(subjectId, "1000");
     }
 
     /**
@@ -45,7 +45,7 @@ public class SubjectServiceImpl implements SubjectService{
      */
     @Override
     public Subject searchSubject(String subjectId) {
-        return subjectMapper.selectByPrimaryKey(subjectId);
+        return subjectMapper.selectByPrimaryKey(subjectId,"1001");
     }
 
     /**

@@ -70,8 +70,8 @@ public class StudentServiceImpl implements StudentService{
     @Override
     public HashMap<String, Integer> countStudent() {
         HashMap<String , Integer> Num = new HashMap<String , Integer>();
-        Num.put("研究生",studentMapper.countGraduate());
-        Num.put("博士",studentMapper.countDoctor());
+//        Num.put("研究生",studentMapper.countGraduate());
+//        Num.put("博士",studentMapper.countDoctor());
         return Num;
     }
 }
