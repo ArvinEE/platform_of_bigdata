@@ -1,8 +1,10 @@
 package IDCC.service;
 
+
 import IDCC.bean.Teacher;
 
 import java.util.HashMap;
+import java.util.List;
 
 
 /**
@@ -19,7 +21,6 @@ public interface TeacherService {
     public Teacher searchTeacher(String teacherId);
     //修改单条教师信息
     public int updateTeacher(Teacher teacher);
-    //查询教师人数信息
-    public HashMap<String, Integer> countTeacher();
-
+    //获取所有教师信息
+    List<Teacher> getAllTeachers();
 }

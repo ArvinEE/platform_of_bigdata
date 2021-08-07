@@ -2,6 +2,7 @@ package IDCC.controller;
 
 import IDCC.bean.Teacher;
 import IDCC.service.TeacherServiceImpl;
+import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
 
 
 /**
@@ -91,17 +95,41 @@ public class TeacherController {
         }
         return "FAILE";
     }
-
     /**
-     * @description: 查询教师数量
-     * @return: HashMap
+     * @description: 查找所有教师信息
+     * @return: List
      * @author: Peng Chong
-     * @time: 2021/1/27 17:56
+     * @time: 2021/8/7 15:40
      */
-    @GetMapping("/countTeacher")
-    @ApiOperation(value = "查询教师数量",notes = "未测试")
+    @GetMapping("/getallteachers")
+    @ApiOperation(value = "查找所有教师信息",notes = "未测试")
     @ResponseBody
-    public HashMap<String, Integer> countTeacher(){
-        return teacherService.countTeacher();
+    public List<Teacher> getAllTeachers(){
+        List<Teacher> teachersList = new ArrayList<>();
+        teachersList = teacherService.getAllTeachers();
+        return teachersList;
     }
+    /**
+     * @description: 统计各职称人数
+     * @return: json
+     * @author: Peng Chong
+     * @time: 2021/8/7 15:53
+     */
+    @GetMapping("/countbystafftitle")
+    @ApiOperation(value = "统计各职称人数",notes = "未测试")
+    @ResponseBody
+    public String countByStaffTitle(){
+        List<Teacher> teachersList = new ArrayList<>();
+        HashMap<String,Integer> countMap = new HashMap<String, Integer>();
+        for(Teacher obj :teacherService.getAllTeachers()){
+            String stafftitle = obj.getStaffTitle();
+            if(countMap.get(stafftitle)==null)
+                countMap.put(stafftitle,1);
+            else
+                countMap.put(stafftitle,countMap.get(stafftitle)+1);
+        }
+        String json = JSONObject.toJSONString(countMap);
+        return json;
+    }
+
 }
