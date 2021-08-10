@@ -78,4 +78,15 @@ public class GroupServiceImpl implements GroupService {
 //        mygroupExample.createCriteria().andGroupIdIdLike("%"+condition+"%");
         return groupMapper.selectByExample(mygroupExample);
     }
+    /**
+     * @description: 获取所有团队信息
+     * @return: List<Mygroup>
+     * @author: Peng Chong
+     * @time: 2021/8/9 16:34
+     */
+    @Override
+    public List<Mygroup> getAllGroups() {
+        MygroupExample mygroupExample = new MygroupExample();
+        return groupMapper.selectByExample(mygroupExample);
+    }
 }

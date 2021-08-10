@@ -2,6 +2,7 @@ package IDCC.controller;
 
 import IDCC.bean.Mygroup;
 import IDCC.service.GroupServiceImpl;
+import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -107,6 +109,40 @@ public class GroupController {
         List<Mygroup> groupsList = new ArrayList<>();
         groupsList = groupService.searchGroupByExample(condition);
         return groupsList;
+    }
+
+    /**
+     * @description: 获取所有团队信息
+     * @return: List
+     * @author: Peng Chong
+     * @time: 2021/8/9 16:38
+     */
+    @GetMapping("/getAllGroups")
+    @ApiOperation(value = "获取所有团队信息",notes = "未测试")
+    @ResponseBody
+    public List getAllGroups(){
+        List<Mygroup> groupsList = new ArrayList<>();
+        groupsList = groupService.getAllGroups();
+        return groupsList;
+    }
+
+    /**
+     * @description: 获取各团队规模
+     * @return: List
+     * @author: Peng Chong
+     * @time: 2021/8/10 14:49
+     */
+    @GetMapping("/getGroupsScale")
+    @ApiOperation(value = "获取各团队规模",notes = "未测试")
+    @ResponseBody
+    public String getGroupsScale(){
+//        HashMap<String,Integer> countMap = new HashMap<String, Integer>();
+        HashMap<String,String> countMap = new HashMap<String, String>();
+        for(Mygroup obj :groupService.getAllGroups())
+            countMap.put(obj.getGroupName(),obj.getGroupScale());
+
+        String json = JSONObject.toJSONString(countMap);
+        return json;
     }
 
 }

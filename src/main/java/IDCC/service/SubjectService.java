@@ -1,6 +1,9 @@
 package IDCC.service;
 
 import IDCC.bean.Subject;
+import IDCC.bean.Teacher;
+
+import java.util.List;
 
 /**
  * @description: 项目信息操作接口层
@@ -16,4 +19,6 @@ public interface SubjectService {
     public Subject searchSubject(String subjectId);
     //修改单条项目信息（根据id）
     public int updateSubject(Subject subject);
+    //获取所有教师信息
+    List<Subject> getAllSubjects();
 }

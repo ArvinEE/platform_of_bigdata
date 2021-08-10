@@ -1,9 +1,13 @@
 package IDCC.service;
 
 import IDCC.bean.Subject;
+import IDCC.bean.SubjectExample;
+
 import IDCC.mapper.SubjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @description: 项目信息操作实现层
@@ -57,5 +61,17 @@ public class SubjectServiceImpl implements SubjectService{
     @Override
     public int updateSubject(Subject subject) {
         return subjectMapper.updateByPrimaryKey(subject);
+    }
+
+    /**
+     * @description: 查找所有课题（项目）信息
+     * @return: List
+     * @author: Peng Chong
+     * @time: 2021/8/10 19:16
+     */
+    @Override
+    public List<Subject> getAllSubjects() {
+        SubjectExample subjectExample = new SubjectExample();
+        return subjectMapper.selectByExample(subjectExample);
     }
 }

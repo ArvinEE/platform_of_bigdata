@@ -1,6 +1,8 @@
 package IDCC.controller;
 
+import IDCC.bean.Mygroup;
 import IDCC.bean.Teacher;
+import IDCC.service.GroupServiceImpl;
 import IDCC.service.TeacherServiceImpl;
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
@@ -28,6 +30,8 @@ import java.util.List;
 public class TeacherController {
     @Autowired
     private TeacherServiceImpl teacherService;
+    @Autowired
+    private GroupServiceImpl groupService;
 
     /**
      * @description: 控制增加单条教师信息
@@ -96,13 +100,13 @@ public class TeacherController {
         return "FAILE";
     }
     /**
-     * @description: 查找所有教师信息
+     * @description: 获取所有教师信息
      * @return: List
      * @author: Peng Chong
      * @time: 2021/8/7 15:40
      */
-    @GetMapping("/getallteachers")
-    @ApiOperation(value = "查找所有教师信息",notes = "未测试")
+    @GetMapping("/getAllTeachers")
+    @ApiOperation(value = "获取所有教师信息",notes = "未测试")
     @ResponseBody
     public List<Teacher> getAllTeachers(){
         List<Teacher> teachersList = new ArrayList<>();
@@ -115,11 +119,10 @@ public class TeacherController {
      * @author: Peng Chong
      * @time: 2021/8/7 15:53
      */
-    @GetMapping("/countbystafftitle")
+    @GetMapping("/countByStaffTitle")
     @ApiOperation(value = "统计各职称人数",notes = "未测试")
     @ResponseBody
     public String countByStaffTitle(){
-        List<Teacher> teachersList = new ArrayList<>();
         HashMap<String,Integer> countMap = new HashMap<String, Integer>();
         for(Teacher obj :teacherService.getAllTeachers()){
             String stafftitle = obj.getStaffTitle();
@@ -131,5 +134,80 @@ public class TeacherController {
         String json = JSONObject.toJSONString(countMap);
         return json;
     }
+
+    /**
+     * @description: 统计教师变动情况
+     * @return: json
+     * @author: Peng Chong
+     * @time: 2021/8/9 20:00
+     */
+    @GetMapping("/countByTransfer")
+    @ApiOperation(value = "统计教师变动情况",notes = "未测试")
+    @ResponseBody
+    public String countByTransfer(){
+        HashMap<String,Integer> countMap = new HashMap<String, Integer>();
+        countMap.put("教师人数",getAllTeachers().size());
+        countMap.put("在职人数",0);
+        countMap.put("调动人数",0);
+        for(Teacher obj :teacherService.getAllTeachers()){
+            int used = obj.getUsed();
+            if(used==1)
+                countMap.put("在职人数",countMap.get("在职人数")+1);
+            else
+                countMap.put("调动人数",countMap.get("调动人数")+1);
+        }
+        String json = JSONObject.toJSONString(countMap);
+        return json;
+    }
+
+    /**
+     * @description: 统计各团队教师人数
+     * @return: json
+     * @author: Peng Chong
+     * @time: 2021/8/9 21:20
+     */
+    @GetMapping("/countByGroup")
+    @ApiOperation(value = "统计各团队教师人数",notes = "未测试")
+    @ResponseBody
+    public String countByGroup(){
+
+        HashMap<Integer,Integer> groupMap = new HashMap<Integer, Integer>();
+        HashMap<String,Integer> countMap = new HashMap<String, Integer>();
+        HashMap<Integer,String> transferMap = new HashMap<Integer,String>();
+
+        for(Mygroup obj :groupService.getAllGroups())
+        {
+            groupMap.put(obj.getGroupId(),0);
+            transferMap.put(obj.getGroupId(),obj.getGroupName());
+        }
+
+        for(Teacher obj :teacherService.getAllTeachers()){
+            int groupId = obj.getGroupId();
+            groupMap.put(groupId, groupMap.get(groupId)+1);
+        }
+
+        groupMap.forEach((key, value) -> countMap.put(transferMap.get(key),value));
+
+        String json = JSONObject.toJSONString(countMap);
+        return json;
+    }
+
+    /**
+     * @description: 统计教师总人数
+     * @return: json
+     * @author: Peng Chong
+     * @time: 2021/8/10 15:58
+     */
+    @GetMapping("/countTeachersNum")
+    @ApiOperation(value = "统计教师总人数",notes = "未测试")
+    @ResponseBody
+    public String countTeachersNum(){
+        HashMap<String,Integer> countMap = new HashMap<String, Integer>();
+        countMap.put("教师总数",getAllTeachers().size());
+        String json = JSONObject.toJSONString(countMap);
+        return json;
+    }
+
+
 
 }

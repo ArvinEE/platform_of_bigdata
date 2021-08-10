@@ -3,6 +3,7 @@ package IDCC.service;
 import IDCC.bean.Student;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @description: 教师信息实现层接口
@@ -18,6 +19,6 @@ public interface StudentService {
     public Student searchStudent(String studentId);
     //修改单条教师信息
     public int updateStudent(Student student);
-    //学生数量
-    public HashMap<String, Integer> countStudent();
+    //获取所有教师信息
+    List<Student> getAllStudents();
 }

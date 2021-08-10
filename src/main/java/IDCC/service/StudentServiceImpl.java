@@ -1,14 +1,16 @@
 package IDCC.service;
 
 import IDCC.bean.Student;
+import IDCC.bean.StudentExample;
 import IDCC.mapper.StudentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
- * @description: 教师信息实现层
+ * @description: 学生信息实现层
  * @author: Lai Zhouhao
  * @time: 2020/12/7 20:51
  */
@@ -17,7 +19,7 @@ public class StudentServiceImpl implements StudentService{
     @Autowired
     private StudentMapper studentMapper;
     /**
-     * @description: 增加单条教师信息
+     * @description: 增加单条学生信息
      * @return: 0/1
      * @author: Lai Zhouhao
      * @time: 2020/12/7 20:52
@@ -28,7 +30,7 @@ public class StudentServiceImpl implements StudentService{
     }
 
     /**
-     * @description: 删除单条教师信息(根据id删除)
+     * @description: 删除单条学生信息(根据id删除)
      * @return: 0/1
      * @author: Lai Zhouhao
      * @time: 2020/12/7 20:54
@@ -39,7 +41,7 @@ public class StudentServiceImpl implements StudentService{
     }
 
     /**
-     * @description: 查找单条教师信息(根据id删除)
+     * @description: 查找单条学生信息(根据id删除)
      * @return: 0/1
      * @author: Lai Zhouhao
      * @time: 2020/12/7 20:55
@@ -51,7 +53,7 @@ public class StudentServiceImpl implements StudentService{
     }
 
     /**
-     * @description: 更新单条教师信息
+     * @description: 更新单条学生信息
      * @return:
      * @author: Lai Zhouhao
      * @time: 2020/12/7 20:55
@@ -67,11 +69,16 @@ public class StudentServiceImpl implements StudentService{
      * @author: Peng Chong
      * @time: 2021/1/27 18:31
      */
+
+    /**
+     * @description: 查找所有学生信息
+     * @return: List
+     * @author: Peng Chong
+     * @time: 2021/8/10 16:07
+     */
     @Override
-    public HashMap<String, Integer> countStudent() {
-        HashMap<String , Integer> Num = new HashMap<String , Integer>();
-//        Num.put("研究生",studentMapper.countGraduate());
-//        Num.put("博士",studentMapper.countDoctor());
-        return Num;
+    public List<Student> getAllStudents() {
+        StudentExample studentExample = new StudentExample();
+        return studentMapper.selectByExample(studentExample);
     }
 }

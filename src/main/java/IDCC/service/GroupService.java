@@ -21,4 +21,6 @@ public interface GroupService {
     public int updateGroup(Mygroup group);
     //模糊查询成果信息(Id)
     List<Mygroup> searchGroupByExample(int condition);
+    // 获取所有团队信息
+    List<Mygroup> getAllGroups();
 }

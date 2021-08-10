@@ -64,6 +64,7 @@ public class TeacherServiceImpl implements TeacherService{
     public int updateTeacher(Teacher Teacher) {
         return teacherMapper.updateByPrimaryKey(Teacher);
     }
+
     /**
      * @description: 查找所有教师信息
      * @return: List

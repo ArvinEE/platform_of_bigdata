@@ -1,14 +1,21 @@
 package IDCC.controller;
 
 import IDCC.bean.Subject;
+import IDCC.bean.Teacher;
 import IDCC.service.SubjectServiceImpl;
+import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 @Controller
 @RequestMapping("/subject")
@@ -80,5 +87,37 @@ public class SubjectController {
             return "SUCCESS";
         }
         return "FAILE";
+    }
+
+    /**
+     * @description: 查找所有课题（项目）信息
+     * @return: List
+     * @author: Peng Chong
+     * @time: 2021/8/10 19:20
+     */
+    @GetMapping("/getAllSubjects")
+    @ApiOperation(value = "查找所有课题（项目）信息",notes = "未测试")
+    @ResponseBody
+    public List<Subject> getAllSubjects(){
+        List<Subject> subjectsList = new ArrayList<>();
+        subjectsList = subjectService.getAllSubjects();
+        return subjectsList;
+    }
+
+    /**
+     * @description: 统计所有项目进度
+     * @return: json
+     * @author: Peng Chong
+     * @time: 2021/8/10 19:27
+     */
+    @GetMapping("/countBySchedule")
+    @ApiOperation(value = "统计所有项目进度",notes = "未测试")
+    @ResponseBody
+    public String countBySchedule(){
+        HashMap<String,String> countMap = new HashMap<String, String>();
+        for(Subject obj :subjectService.getAllSubjects())
+            countMap.put(obj.getSubjectName(),obj.getSubjectSchedule());
+        String json = JSONObject.toJSONString(countMap);
+        return json;
     }
 }
