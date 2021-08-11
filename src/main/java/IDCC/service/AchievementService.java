@@ -24,5 +24,7 @@ public interface AchievementService {
     List<Achievement> searchAchievementByExample(int condition);
     //模糊查询成果信息()
     List<Achievement> searchAchievementByExample();
+    //获取所有成功信息
+    List<Achievement> getAllAchievements();
 
 }

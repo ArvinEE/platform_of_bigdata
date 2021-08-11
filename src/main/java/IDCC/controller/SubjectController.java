@@ -1,6 +1,9 @@
 package IDCC.controller;
 
 import IDCC.bean.Subject;
+
+
+import IDCC.bean.Subject;
 import IDCC.service.SubjectService;
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
@@ -21,6 +24,7 @@ import java.util.List;
 public class SubjectController {
     @Autowired
     private SubjectService subjectService;
+
 
     /**
      * @description: 控制增加项目信息操作
@@ -133,4 +137,44 @@ public class SubjectController {
     public String countSubjectScheduleNum(){
         return JSONObject.toJSONString(subjectService.countSubjectScheduleNum());
     }
+
+    /**
+     * @description: 统计各项目资助类别数
+     * @return: json
+     * @author: Peng Chong
+     * @time: 2021/8/11 19:30
+     */
+    @GetMapping("/countByClass")
+    @ApiOperation(value = "统计各项目资助类别数",notes = "未测试")
+    @ResponseBody
+    public String countByClass(){
+        HashMap<String,Integer> countMap = new HashMap<String, Integer>();
+        for(Subject obj :subjectService.getAllSubjects()){
+            String subjectClass = obj.getSubjectClass();
+            if(countMap.get(subjectClass)==null)
+                countMap.put(subjectClass,1);
+            else
+                countMap.put(subjectClass,countMap.get(subjectClass)+1);
+        }
+
+        String json = JSONObject.toJSONString(countMap);
+        return json;
+    }
+
+    /**
+     * @description: 统计项目立项个数
+     * @return: json
+     * @author: Peng Chong
+     * @time: 2021/8/10 19:27
+     */
+    @GetMapping("/countBySubject")
+    @ApiOperation(value = "统计项目立项个数",notes = "未测试")
+    @ResponseBody
+    public String countBySubject(){
+        HashMap<String,Integer> countMap = new HashMap<String, Integer>();
+        countMap.put("项目立项",getAllSubjects().size());
+        String json = JSONObject.toJSONString(countMap);
+        return json;
+    }
+
 }

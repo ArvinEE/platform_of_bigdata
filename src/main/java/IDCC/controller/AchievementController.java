@@ -1,8 +1,10 @@
 package IDCC.controller;
 
 import IDCC.bean.Achievement;
+import IDCC.bean.Mygroup;
 import IDCC.service.AchievementService;
 import IDCC.service.DeviceService;
+import IDCC.service.GroupService;
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.swagger.annotations.Api;
@@ -31,6 +33,8 @@ import java.util.Map;
 public class AchievementController {
     @Autowired
     private AchievementService achievementService;
+    @Autowired
+    private GroupService groupService;
     @Autowired
     private DeviceService deviceService;
 
@@ -132,5 +136,124 @@ public class AchievementController {
         map = deviceService.countAllDeviceNum();
         map.put("软件平台", achievements.size());
         return JSONObject.toJSONString(map);
+    }
+
+    /**
+     * @description: 统计各著作成果数量及总数
+     * @return: json
+     * @author: Peng Chong
+     * @time: 2021/8/11 19:25
+     */
+    @GetMapping("/countByWriting")
+    @ApiOperation(value = "统计各著作成果数量及总数",notes = "未测试")
+    @ResponseBody
+    public String countByWriting(){
+        HashMap<String,Integer> countMap = new HashMap<String, Integer>();
+        int sum = 0;
+        String[] writingList = {"专著","教材","软著","著作成果"};
+        for(String grade:writingList) countMap.put(grade,0);
+
+        for (Achievement obj:achievementService.getAllAchievements()){
+            switch (obj.getAchievementClass()){
+                case 5:countMap.put("专著",countMap.get("专著")+1);break;
+                case 6:countMap.put("教材",countMap.get("教材")+1);break;
+                case 7:countMap.put("软著",countMap.get("软著")+1);break;
+            }
+        }
+//        countMap.forEach((key, value) -> countMap.put("著作成果",countMap.get("著作成果")+value));
+        for (String wrting:writingList) sum += countMap.get(wrting);
+        countMap.put("著作成果",sum);
+        String json = JSONObject.toJSONString(countMap);
+        return json;
+    }
+
+    /**
+     * @description: 统计论文和授权专利总数
+     * @return: json
+     * @author: Peng Chong
+     * @time: 2021/8/11 19:25
+     */
+    @GetMapping("/countPaperAndPatent")
+    @ApiOperation(value = "统计论文和授权专利总数",notes = "未测试")
+    @ResponseBody
+    public String countPaperAndPatent(){
+        HashMap<String,Integer> countMap = new HashMap<String, Integer>();
+        countMap.put("发表论文",0);
+        countMap.put("专利授权",0);
+
+        for (Achievement obj:achievementService.getAllAchievements()){
+            if (obj.getAchievementClass() == 1) countMap.put("发表论文",countMap.get("发表论文")+1);
+            else if (obj.getAchievementClass() == 2) countMap.put("专利授权",countMap.get("专利授权")+1);
+        }
+
+
+        String json = JSONObject.toJSONString(countMap);
+        return json;
+    }
+
+    /**
+     * @description: 统计各团队论文数
+     * @return: json
+     * @author: Peng Chong
+     * @time: 2021/8/11 20:52
+     */
+    @GetMapping("/countPaperByGroup")
+    @ApiOperation(value = "统计各团队论文数",notes = "未测试")
+    @ResponseBody
+    public String countPaperByGroup(){
+        HashMap<Integer,Integer> groupMap = new HashMap<Integer, Integer>();
+        HashMap<String,Integer> countMap = new HashMap<String, Integer>();
+        HashMap<Integer,String> transferMap = new HashMap<Integer,String>();
+
+        for(Mygroup obj :groupService.getAllGroups())
+        {
+            groupMap.put(obj.getGroupId(),0);
+            transferMap.put(obj.getGroupId(),obj.getGroupName());
+        }
+
+        for (Achievement obj:achievementService.getAllAchievements()){
+            if (obj.getAchievementClass() == 1) {
+                int groupId = obj.getGroupId();
+                groupMap.put(groupId, groupMap.get(groupId)+1);
+            }
+        }
+
+        groupMap.forEach((key, value) -> countMap.put(transferMap.get(key),value));
+
+        String json = JSONObject.toJSONString(countMap);
+        return json;
+    }
+
+    /**
+     * @description: 统计各团队授权专利数
+     * @return: json
+     * @author: Peng Chong
+     * @time: 2021/8/11 20:52
+     */
+    @GetMapping("/countPatentByGroup")
+    @ApiOperation(value = "统计各团队授权专利数",notes = "未测试")
+    @ResponseBody
+    public String countPatentByGroup(){
+        HashMap<Integer,Integer> groupMap = new HashMap<Integer, Integer>();
+        HashMap<String,Integer> countMap = new HashMap<String, Integer>();
+        HashMap<Integer,String> transferMap = new HashMap<Integer,String>();
+
+        for(Mygroup obj :groupService.getAllGroups())
+        {
+            groupMap.put(obj.getGroupId(),0);
+            transferMap.put(obj.getGroupId(),obj.getGroupName());
+        }
+
+        for (Achievement obj:achievementService.getAllAchievements()){
+            if (obj.getAchievementClass() == 2) {
+                int groupId = obj.getGroupId();
+                groupMap.put(groupId, groupMap.get(groupId)+1);
+            }
+        }
+
+        groupMap.forEach((key, value) -> countMap.put(transferMap.get(key),value));
+
+        String json = JSONObject.toJSONString(countMap);
+        return json;
     }
 }
