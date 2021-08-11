@@ -49,7 +49,10 @@
                 <!-- 指定数据库表 -->
                 <table tableName="account"></table>
                 <table tableName="achievement"></table>
+                <table tableName="achievement_info"></table>
+                <table tableName="device"></table>
                 <table tableName="mygroup"></table>
+                <table tableName="personnel_info"></table>
                 <table tableName="priindex"></table>
                 <table tableName="secindex"></table>
                 <table tableName="student"></table>
