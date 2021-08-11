@@ -2,7 +2,6 @@ package IDCC.controller;
 
 import IDCC.bean.Student;
 import IDCC.service.StudentService;
-import IDCC.service.StudentServiceImpl;
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -146,5 +145,20 @@ public class StudentController {
         }
         String json = JSONObject.toJSONString(countMap);
         return json;
+    }
+
+    /**
+     * @description: 新生新增人数变化（划分为博士、硕士两条线）
+     * @param: 无
+     * @return:
+     * @author: Lai ZhouHao
+     * @time: 2021/8/11 18:43
+    **/
+    @GetMapping("/countNewStudentNum")
+    @ApiOperation(value = "新生新增人数变化（划分为博士、硕士两条线）",notes = "未测试")
+    @ResponseBody
+    public String countNewStudentNum(){
+        studentService.countNewStudentNum();
+        return "";
     }
 }

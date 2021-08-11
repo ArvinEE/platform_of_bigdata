@@ -6,7 +6,9 @@ import IDCC.mapper.SubjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description: 项目信息操作实现层
@@ -73,4 +75,34 @@ public class SubjectServiceImpl implements SubjectService{
         SubjectExample subjectExample = new SubjectExample();
         return subjectMapper.selectByExample(subjectExample);
     }
+
+    /**
+     * @description: 统计正在进行的项目数量和已解题的项目数量
+     * @param: 无
+     * @return: Map<String, Integer>
+     * @author: Lai ZhouHao
+     * @time: 2021/8/11 19:20
+    **/
+    @Override
+    public Map<String, Integer> countSubjectScheduleNum() {
+        Map<String, Integer> map = new HashMap<>();
+        List<Subject> subjects = subjectMapper.selectByExample(new SubjectExample());
+        int finished = 0, process = 0;
+        for (Subject subject : subjects) {
+            String schedule = subject.getSubjectSchedule();
+            switch (schedule){
+                case "已结题":
+                    finished++;
+                    break;
+                case "正在进行":
+                    process++;
+                    break;
+            }
+        }
+        map.put("已结题", finished);
+        map.put("正在进行", process);
+        return map;
+    }
+
+
 }

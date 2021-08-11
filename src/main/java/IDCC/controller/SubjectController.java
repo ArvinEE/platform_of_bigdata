@@ -2,7 +2,6 @@ package IDCC.controller;
 
 import IDCC.bean.Subject;
 import IDCC.service.SubjectService;
-import IDCC.service.SubjectServiceImpl;
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -119,5 +118,19 @@ public class SubjectController {
             countMap.put(obj.getSubjectName(),obj.getSubjectSchedule());
         String json = JSONObject.toJSONString(countMap);
         return json;
+    }
+
+    /**
+     * @description: 统计正在进行的项目数量和已解题的项目数量
+     * @param: 无
+     * @return:
+     * @author: Lai ZhouHao
+     * @time: 2021/8/11 19:17
+    **/
+    @GetMapping("/countSubjectScheduleNum")
+    @ApiOperation(value = "统计正在进行的项目数量和已解题的项目数量",notes = "未测试")
+    @ResponseBody
+    public String countSubjectScheduleNum(){
+        return JSONObject.toJSONString(subjectService.countSubjectScheduleNum());
     }
 }

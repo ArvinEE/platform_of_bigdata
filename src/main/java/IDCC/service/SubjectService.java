@@ -3,6 +3,7 @@ package IDCC.service;
 import IDCC.bean.Subject;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description: 项目信息操作接口层
@@ -19,5 +20,7 @@ public interface SubjectService {
     //修改单条项目信息（根据id）
     public int updateSubject(Subject subject);
     //获取所有教师信息
-    List<Subject> getAllSubjects();
+    public List<Subject> getAllSubjects();
+    //统计正在进行的项目数量和已解题的项目数量
+    public Map<String, Integer> countSubjectScheduleNum();
 }

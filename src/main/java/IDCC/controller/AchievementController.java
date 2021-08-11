@@ -2,7 +2,7 @@ package IDCC.controller;
 
 import IDCC.bean.Achievement;
 import IDCC.service.AchievementService;
-import IDCC.service.AchievementServiceImpl;
+import IDCC.service.DeviceService;
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.swagger.annotations.Api;
@@ -31,6 +31,8 @@ import java.util.Map;
 public class AchievementController {
     @Autowired
     private AchievementService achievementService;
+    @Autowired
+    private DeviceService deviceService;
 
     /**
      * @description: 控制增加单条成果信息
@@ -127,10 +129,8 @@ public class AchievementController {
     public String countNumOfSoftwareAndDevice() throws JsonProcessingException {
         Map<String, Integer> map = new HashMap<>();
         List<Achievement> achievements = achievementService.searchAchievementByExample();
+        map = deviceService.countAllDeviceNum();
         map.put("软件平台", achievements.size());
-
-        System.out.println("--------------");
-        System.out.println(JSONObject.toJSONString(achievements));
-        return "";
+        return JSONObject.toJSONString(map);
     }
 }
