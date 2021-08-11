@@ -1,23 +1,22 @@
 package IDCC.controller;
 
 import IDCC.bean.Subject;
-import IDCC.bean.Teacher;
 import IDCC.service.SubjectServiceImpl;
 import com.alibaba.fastjson.JSONObject;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 @Controller
+@Api(value = "项目信息控制层")
+@CrossOrigin
 @RequestMapping("/subject")
 public class SubjectController {
     @Autowired

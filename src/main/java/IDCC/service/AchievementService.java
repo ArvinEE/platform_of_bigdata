@@ -22,4 +22,6 @@ public interface AchievementService {
     public int updateAchievement(Achievement achievement);
     //模糊查询成果信息(Id)
     List<Achievement> searchAchievementByExample(int condition);
+    //模糊查询成果信息(Name)
+    List<Achievement> searchAchievementByExample(String name);
 }

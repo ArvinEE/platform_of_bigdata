@@ -76,7 +76,22 @@ public class AchievementServiceImpl implements AchievementService {
     @Override
     public List<Achievement> searchAchievementByExample(int condition) {
         AchievementExample achievementExample = new AchievementExample();
+//        achievementExample.createCriteria().andA("%"+condition+"%");
 //        achievementExample.createCriteria().andAchievementIdLike("%"+condition+"%");
+        return achievementMapper.selectByExample(achievementExample);
+    }
+
+    /**
+     * @description: 查询多条成果信息（成果名模糊查询）
+     * @param: name(String)
+     * @return: List<Achievement>
+     * @author: Lai ZhouHao
+     * @time: 2021/8/11 15:34
+    **/
+    @Override
+    public List<Achievement> searchAchievementByExample(String name) {
+        AchievementExample achievementExample = new AchievementExample();
+        achievementExample.createCriteria().andAchievementNameLike("%"+name+"%");
         return achievementMapper.selectByExample(achievementExample);
     }
 }
