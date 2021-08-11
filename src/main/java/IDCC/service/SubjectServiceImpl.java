@@ -1,9 +1,5 @@
 package IDCC.service;
 
-import IDCC.bean.Subject;
-import IDCC.bean.SubjectExample;
-
-import IDCC.mapper.SubjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

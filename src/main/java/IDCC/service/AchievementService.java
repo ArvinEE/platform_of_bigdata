@@ -1,8 +1,6 @@
 package IDCC.service;
 
 
-import IDCC.bean.Achievement;
-
 import java.util.List;
 
 /**
@@ -22,6 +20,6 @@ public interface AchievementService {
     public int updateAchievement(Achievement achievement);
     //模糊查询成果信息(Id)
     List<Achievement> searchAchievementByExample(int condition);
-    //模糊查询成果信息(Name)
-    List<Achievement> searchAchievementByExample(String name);
+    //模糊查询成果信息(类别为3)
+    List<Achievement> searchAchievementByExample();
 }

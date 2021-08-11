@@ -1,7 +1,5 @@
 package IDCC.controller;
 
-import IDCC.bean.Mygroup;
-import IDCC.bean.Teacher;
 import IDCC.service.GroupServiceImpl;
 import IDCC.service.TeacherServiceImpl;
 import com.alibaba.fastjson.JSONObject;

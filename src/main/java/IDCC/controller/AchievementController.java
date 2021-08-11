@@ -1,8 +1,7 @@
 package IDCC.controller;
 
-import IDCC.bean.Achievement;
 import IDCC.service.AchievementServiceImpl;
-import IDCC.util.ObjectChangeToJson;
+import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -14,7 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description: 控制成果信息的操作
@@ -122,12 +123,12 @@ public class AchievementController {
     @ApiOperation(value = "软、硬件成果统计",notes = "未测试")
     @ResponseBody
     public String countNumOfSoftwareAndDevice() throws JsonProcessingException {
-        List<Achievement> achievements = achievementService.searchAchievementByExample("平台");
-        for (Achievement ach : achievements) {
-            System.out.println(ach.getAchievementName());
-        }
+        Map<String, Integer> map = new HashMap<>();
+        List<Achievement> achievements = achievementService.searchAchievementByExample();
+        map.put("软件平台", achievements.size());
+
         System.out.println("--------------");
-        System.out.println(ObjectChangeToJson.change(achievements));
+        System.out.println(JSONObject.toJSONString(achievements));
         return "";
     }
 }

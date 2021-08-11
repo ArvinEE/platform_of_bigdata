@@ -1,6 +1,5 @@
 package IDCC.controller;
 
-import IDCC.bean.Mygroup;
 import IDCC.service.GroupServiceImpl;
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;

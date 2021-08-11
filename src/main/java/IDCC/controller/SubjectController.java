@@ -1,6 +1,5 @@
 package IDCC.controller;
 
-import IDCC.bean.Subject;
 import IDCC.service.SubjectServiceImpl;
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;

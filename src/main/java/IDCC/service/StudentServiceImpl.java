@@ -1,12 +1,8 @@
 package IDCC.service;
 
-import IDCC.bean.Student;
-import IDCC.bean.StudentExample;
-import IDCC.mapper.StudentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 
 /**

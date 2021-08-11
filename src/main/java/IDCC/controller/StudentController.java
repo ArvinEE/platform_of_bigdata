@@ -1,7 +1,5 @@
 package IDCC.controller;
 
-import IDCC.bean.Student;
-import IDCC.bean.Teacher;
 import IDCC.service.StudentServiceImpl;
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;

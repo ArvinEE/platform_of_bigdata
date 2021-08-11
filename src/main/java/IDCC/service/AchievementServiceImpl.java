@@ -1,8 +1,5 @@
 package IDCC.service;
 
-import IDCC.bean.Achievement;
-import IDCC.bean.AchievementExample;
-import IDCC.mapper.AchievementMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -89,9 +86,10 @@ public class AchievementServiceImpl implements AchievementService {
      * @time: 2021/8/11 15:34
     **/
     @Override
-    public List<Achievement> searchAchievementByExample(String name) {
+    public List<Achievement> searchAchievementByExample() {
         AchievementExample achievementExample = new AchievementExample();
-        achievementExample.createCriteria().andAchievementNameLike("%"+name+"%");
+        //3即为平台类别
+        achievementExample.createCriteria().andAchievementClassEqualTo(3);
         return achievementMapper.selectByExample(achievementExample);
     }
 }
