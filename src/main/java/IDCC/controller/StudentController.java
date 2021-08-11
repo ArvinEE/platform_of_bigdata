@@ -1,5 +1,7 @@
 package IDCC.controller;
 
+import IDCC.bean.Student;
+import IDCC.service.StudentService;
 import IDCC.service.StudentServiceImpl;
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
@@ -24,7 +26,7 @@ import java.util.List;
 @RequestMapping("/student")
 public class StudentController {
     @Autowired
-    private StudentServiceImpl studentService;
+    private StudentService studentService;
 
     /**
      * @description: 控制增加单条学生信息

@@ -1,5 +1,8 @@
 package IDCC.service;
 
+
+import IDCC.bean.Account;
+
 import java.util.List;
 
 /**
@@ -18,4 +21,6 @@ public interface AccountService {
     List<Object> userLogin(String accountId, String userPwd);
     //模糊查询
     List<Account> searchAccountByExample(String condition);
+    //获取所有账户信息
+    List<Account> getAllAccounts();
 }

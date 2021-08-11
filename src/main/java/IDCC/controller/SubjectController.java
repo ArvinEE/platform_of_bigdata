@@ -1,5 +1,7 @@
 package IDCC.controller;
 
+import IDCC.bean.Subject;
+import IDCC.service.SubjectService;
 import IDCC.service.SubjectServiceImpl;
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
@@ -19,7 +21,7 @@ import java.util.List;
 @RequestMapping("/subject")
 public class SubjectController {
     @Autowired
-    private SubjectServiceImpl subjectService;
+    private SubjectService subjectService;
 
     /**
      * @description: 控制增加项目信息操作

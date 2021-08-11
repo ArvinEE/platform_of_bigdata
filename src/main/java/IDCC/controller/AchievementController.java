@@ -1,5 +1,7 @@
 package IDCC.controller;
 
+import IDCC.bean.Achievement;
+import IDCC.service.AchievementService;
 import IDCC.service.AchievementServiceImpl;
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -28,7 +30,7 @@ import java.util.Map;
 
 public class AchievementController {
     @Autowired
-    private AchievementServiceImpl achievementService;
+    private AchievementService achievementService;
 
     /**
      * @description: 控制增加单条成果信息

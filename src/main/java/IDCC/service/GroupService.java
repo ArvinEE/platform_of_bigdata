@@ -1,5 +1,7 @@
 package IDCC.service;
 
+import IDCC.bean.Mygroup;
+
 import java.util.List;
 
 /**

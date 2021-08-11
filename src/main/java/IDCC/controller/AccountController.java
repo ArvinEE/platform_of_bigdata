@@ -1,5 +1,7 @@
 package IDCC.controller;
 
+import IDCC.bean.Account;
+import IDCC.service.AccountService;
 import IDCC.service.AccountServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -22,7 +24,7 @@ import java.util.List;
 @RequestMapping("/user")
 public class AccountController {
     @Autowired
-    private AccountServiceImpl accountService;
+    private AccountService accountService;
 
 
     /**

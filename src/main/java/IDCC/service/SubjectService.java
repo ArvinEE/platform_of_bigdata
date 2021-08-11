@@ -1,5 +1,7 @@
 package IDCC.service;
 
+import IDCC.bean.Subject;
+
 import java.util.List;
 
 /**

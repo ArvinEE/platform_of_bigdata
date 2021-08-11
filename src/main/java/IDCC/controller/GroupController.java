@@ -1,5 +1,7 @@
 package IDCC.controller;
 
+import IDCC.bean.Mygroup;
+import IDCC.service.GroupService;
 import IDCC.service.GroupServiceImpl;
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
@@ -26,7 +28,7 @@ import java.util.List;
 
 public class GroupController {
     @Autowired
-    private GroupServiceImpl groupService;
+    private GroupService groupService;
 
     /**
      * @description: 控制增加单条团队信息

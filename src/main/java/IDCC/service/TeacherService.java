@@ -1,6 +1,10 @@
 package IDCC.service;
 
 
+import IDCC.bean.PersonnelInfo;
+import IDCC.bean.Teacher;
+
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -20,4 +24,6 @@ public interface TeacherService {
     public int updateTeacher(Teacher teacher);
     //获取所有教师信息
     List<Teacher> getAllTeachers();
+    //获取所有高层次人才信息
+    List<PersonnelInfo> getAllHighLevel();
 }

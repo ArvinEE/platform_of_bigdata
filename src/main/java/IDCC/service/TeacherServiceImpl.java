@@ -1,6 +1,12 @@
 package IDCC.service;
 
 
+import IDCC.bean.PersonnelInfo;
+import IDCC.bean.PersonnelInfoExample;
+import IDCC.bean.Teacher;
+import IDCC.bean.TeacherExample;
+import IDCC.mapper.PersonnelInfoMapper;
+import IDCC.mapper.TeacherMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +22,8 @@ import java.util.List;
 public class TeacherServiceImpl implements TeacherService{
     @Autowired
     private TeacherMapper teacherMapper;
+    @Autowired
+    private PersonnelInfoMapper personnelInfoMapper;
     /**
      * @description: 增加单条教师信息
      * @return: 0/1
@@ -71,6 +79,18 @@ public class TeacherServiceImpl implements TeacherService{
     public List<Teacher> getAllTeachers() {
         TeacherExample teacherExample = new TeacherExample();
         return teacherMapper.selectByExample(teacherExample);
+    }
+
+    /**
+     * @description: 获取所有高层次人才信息
+     * @return: List
+     * @author: Peng Chong
+     * @time: 2021/8/11 16:11
+     */
+    @Override
+    public List<PersonnelInfo> getAllHighLevel() {
+        PersonnelInfoExample personnelInfoExample = new PersonnelInfoExample();
+        return personnelInfoMapper.selectByExample(personnelInfoExample);
     }
 
 }

@@ -1,5 +1,12 @@
 package IDCC.service;
 
+import IDCC.bean.Account;
+import IDCC.bean.AccountExample;
+import IDCC.bean.Teacher;
+import IDCC.bean.TeacherExample;
+import IDCC.mapper.AccountMapper;
+import IDCC.mapper.StudentMapper;
+import IDCC.mapper.TeacherMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -104,6 +111,18 @@ public class AccountServiceImpl implements AccountService{
     public List<Account> searchAccountByExample(String condition) {
         AccountExample accountExample = new AccountExample();
         accountExample.createCriteria().andAccountIdLike("%"+condition+"%");
+        return accountMapper.selectByExample(accountExample);
+    }
+
+    /**
+     * @description: 查找所有账户信息
+     * @return: List
+     * @author: Peng Chong
+     * @time: 2021/8/7 15:34
+     */
+    @Override
+    public List<Account> getAllAccounts() {
+        AccountExample accountExample = new AccountExample();
         return accountMapper.selectByExample(accountExample);
     }
 }
