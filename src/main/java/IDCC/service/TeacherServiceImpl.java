@@ -1,11 +1,13 @@
 package IDCC.service;
 
+
 import IDCC.bean.Teacher;
+import IDCC.bean.TeacherExample;
 import IDCC.mapper.TeacherMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
+import java.util.List;
 
 
 /**
@@ -63,31 +65,15 @@ public class TeacherServiceImpl implements TeacherService{
     }
 
     /**
-     * @description: 查询教师人数返回信息
-     * @return: HashMap
+     * @description: 查找所有教师信息
+     * @return: List
      * @author: Peng Chong
-     * @time: 2021/1/27 18:15
+     * @time: 2021/8/7 15:34
      */
     @Override
-    public HashMap<String, Integer> countTeacher() {
-        int Professor = 0;
-        int associateProfessor=0;
-        int Lecturer=0;
-        int postdoctoral=0;
-        HashMap<String , Integer> Num = new HashMap<String , Integer>();
-//        for (String title:teacherMapper.selectByStaffTitle()) {
-//            switch (title){
-//                case "教授" :Professor++;break;
-//                case "副教授" :associateProfessor++;break;
-//                case "讲师" :Lecturer++;break;
-//                case "博士后" :postdoctoral++;break;
-//            }
-//        }
-//        Num.put("教授",Professor);
-//        Num.put("副教授",associateProfessor);
-//        Num.put("讲师",Lecturer);
-//        Num.put("博士后",postdoctoral);
-        return Num;
+    public List<Teacher> getAllTeachers() {
+        TeacherExample teacherExample = new TeacherExample();
+        return teacherMapper.selectByExample(teacherExample);
     }
 
 }
