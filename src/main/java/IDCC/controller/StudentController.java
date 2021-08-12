@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description: 控制学生信息的操作
@@ -119,9 +120,9 @@ public class StudentController {
     @ApiOperation(value = "统计学生总人数",notes = "未测试")
     @ResponseBody
     public String countStudentsNum(){
-        HashMap<String,Integer> countMap = new HashMap<String, Integer>();
-        countMap.put("学生总数",getAllStudents().size());
-
+        Map<String,Integer> countMap = new HashMap<String, Integer>();
+//        countMap.put("学生总数",getAllStudents().size());
+        countMap = studentService.countStudentsNum();
         String json = JSONObject.toJSONString(countMap);
         return json;
     }
@@ -136,13 +137,9 @@ public class StudentController {
     @ApiOperation(value = "统计各年级学生人数",notes = "未测试")
     @ResponseBody
     public String countByGrade(){
-        HashMap<String,Integer> countMap = new HashMap<String, Integer>();
-        String[] gradeList = {"研一","研二","研三","博一","博二","博三",};
-        for(String grade:gradeList) countMap.put(grade,0);
-        for(Student obj :studentService.getAllStudents()){
-            String grade = obj.getStudentGrade();
-            countMap.put(grade,countMap.get(grade)+1);
-        }
+        Map<String,Integer> countMap = new HashMap<String, Integer>();
+
+        countMap = studentService.countByGrade();
         String json = JSONObject.toJSONString(countMap);
         return json;
     }

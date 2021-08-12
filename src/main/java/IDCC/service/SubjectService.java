@@ -23,4 +23,10 @@ public interface SubjectService {
     public List<Subject> getAllSubjects();
     //统计正在进行的项目数量和已解题的项目数量
     public Map<String, Integer> countSubjectScheduleNum();
+    //统计所有项目进度
+    public Map<String, String> countBySchedule();
+    //统计各项目资助类别数
+    public Map<String, Integer> countByClass();
+    //统计项目立项个数
+    public Map<String, Integer> countBySubject();
 }

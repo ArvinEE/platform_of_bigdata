@@ -6,6 +6,7 @@ import IDCC.bean.Teacher;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -24,6 +25,21 @@ public interface TeacherService {
     public int updateTeacher(Teacher teacher);
     //获取所有教师信息
     List<Teacher> getAllTeachers();
-    //获取所有高层次人才信息
-    List<PersonnelInfo> getAllHighLevel();
+    //统计教师各职称人数
+    Map<String,Integer> countByStaffTitle();
+    //统计教师变动情况
+    Map<String,Integer> countByTransfer();
+    // 统计各团队教师人数
+    Map<String,Integer> countByGroup();
+    // 统计教师总人数
+    Map<String,Integer> countTeachersNum();
+    // 统计团队教师构成情况
+    Map<String,Integer> countByStructure();
+    // 统计各研究领域人数
+    Map<String,Integer> countByResearchField();
+    //  统计教师男女占比
+    Map<String,Integer> countBySex();
+    // 统计各高层次人才数
+    Map<String,Integer> countByHighLevel();
+
 }

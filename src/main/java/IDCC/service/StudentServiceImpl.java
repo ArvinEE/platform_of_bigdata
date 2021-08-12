@@ -145,4 +145,35 @@ public class StudentServiceImpl implements StudentService{
         map.put("博士研究生", docter);
         return map;
     }
+
+    /**
+     * @description: 统计学生总人数
+     * @return: Map<String, Integer>
+     * @author: Peng Chong
+     * @time: 2021/8/9 16:34
+     */
+    @Override
+    public Map<String, Integer> countStudentsNum(){
+        Map<String,Integer> countMap = new HashMap<String, Integer>();
+        countMap.put("学生总数",getAllStudents().size());
+        return countMap;
+    }
+
+    /**
+     * @description: 统计各年级学生人数
+     * @return: Map<String, Integer>
+     * @author: Peng Chong
+     * @time: 2021/8/9 16:34
+     */
+    @Override
+    public Map<String, Integer> countByGrade(){
+        Map<String,Integer> countMap = new HashMap<String, Integer>();
+        String[] gradeList = {"研一","研二","研三","博一","博二","博三",};
+        for(String grade:gradeList) countMap.put(grade,0);
+        for(Student obj :getAllStudents()){
+            String grade = obj.getStudentGrade();
+            countMap.put(grade,countMap.get(grade)+1);
+        }
+        return countMap;
+    }
 }

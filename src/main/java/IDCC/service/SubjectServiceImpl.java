@@ -104,5 +104,52 @@ public class SubjectServiceImpl implements SubjectService{
         return map;
     }
 
+    /**
+     * @description: 统计所有项目进度
+     * @return: Map<String, String>
+     * @author: Peng Chong
+     * @time: 2021/8/10 19:27
+     */
+    @Override
+    public Map<String, String> countBySchedule(){
+        Map<String,String> countMap = new HashMap<String, String>();
+        SubjectExample subjectExample = new SubjectExample();
+        List<Subject> subjectList = subjectMapper.selectByExample(subjectExample);
+        for(Subject obj :subjectList)
+            countMap.put(obj.getSubjectName(),obj.getSubjectSchedule());
+        return countMap;
+    }
+
+    /**
+     * @description: 统计各项目资助类别数
+     * @return: Map<String, Integer>
+     * @author: Peng Chong
+     * @time: 2021/8/10 19:30
+     */
+    @Override
+    public Map<String, Integer> countByClass(){
+        Map<String,Integer> countMap = new HashMap<String, Integer>();
+        for(Subject obj :getAllSubjects()){
+            String subjectClass = obj.getSubjectClass();
+            if(countMap.get(subjectClass)==null)
+                countMap.put(subjectClass,1);
+            else
+                countMap.put(subjectClass,countMap.get(subjectClass)+1);
+        }
+        return countMap;
+    }
+
+    /**
+     * @description: 统计项目立项个数
+     * @return: Map<String, Integer>
+     * @author: Peng Chong
+     * @time: 2021/8/10 19:27
+     */
+    @Override
+    public Map<String, Integer> countBySubject(){
+        Map<String,Integer> countMap = new HashMap<String, Integer>();
+        countMap.put("项目立项",getAllSubjects().size());
+        return countMap;
+    }
 
 }

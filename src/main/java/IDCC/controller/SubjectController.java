@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @Api(value = "项目信息控制层")
@@ -117,9 +118,9 @@ public class SubjectController {
     @ApiOperation(value = "统计所有项目进度",notes = "未测试")
     @ResponseBody
     public String countBySchedule(){
-        HashMap<String,String> countMap = new HashMap<String, String>();
-        for(Subject obj :subjectService.getAllSubjects())
-            countMap.put(obj.getSubjectName(),obj.getSubjectSchedule());
+        Map<String,String> countMap = new HashMap<String, String>();
+
+        countMap = subjectService.countBySchedule();
         String json = JSONObject.toJSONString(countMap);
         return json;
     }
@@ -148,15 +149,9 @@ public class SubjectController {
     @ApiOperation(value = "统计各项目资助类别数",notes = "未测试")
     @ResponseBody
     public String countByClass(){
-        HashMap<String,Integer> countMap = new HashMap<String, Integer>();
-        for(Subject obj :subjectService.getAllSubjects()){
-            String subjectClass = obj.getSubjectClass();
-            if(countMap.get(subjectClass)==null)
-                countMap.put(subjectClass,1);
-            else
-                countMap.put(subjectClass,countMap.get(subjectClass)+1);
-        }
+        Map<String,Integer> countMap = new HashMap<String, Integer>();
 
+        countMap = subjectService.countByClass();
         String json = JSONObject.toJSONString(countMap);
         return json;
     }
@@ -171,8 +166,9 @@ public class SubjectController {
     @ApiOperation(value = "统计项目立项个数",notes = "未测试")
     @ResponseBody
     public String countBySubject(){
-        HashMap<String,Integer> countMap = new HashMap<String, Integer>();
-        countMap.put("项目立项",getAllSubjects().size());
+        Map<String,Integer> countMap = new HashMap<String, Integer>();
+
+        countMap = subjectService.countBySubject();
         String json = JSONObject.toJSONString(countMap);
         return json;
     }

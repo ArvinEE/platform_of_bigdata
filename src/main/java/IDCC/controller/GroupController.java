@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description: 控制团队信息的操作
@@ -137,11 +138,9 @@ public class GroupController {
     @ApiOperation(value = "获取各团队规模",notes = "未测试")
     @ResponseBody
     public String getGroupsScale(){
-        HashMap<String,Integer> countMap = new HashMap<String, Integer>();
-//        HashMap<String,String> countMap = new HashMap<String, String>();
-        for(Mygroup obj :groupService.getAllGroups())
-            countMap.put(obj.getGroupName(),obj.getGroupScale());
+        Map<String,Integer> countMap = new HashMap<String, Integer>();
 
+        countMap = groupService.getGroupsScale();
         String json = JSONObject.toJSONString(countMap);
         return json;
     }

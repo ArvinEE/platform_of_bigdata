@@ -23,4 +23,9 @@ public interface StudentService {
     List<Student> getAllStudents();
     //统计新生新增人数变化（划分为博士、硕士两条线）
     Map<String, Map<String, Integer>> countNewStudentNum();
+//    Map<String, Integer> countNewStudentNum();
+    //统计学生总人数
+    Map<String, Integer> countStudentsNum();
+    //统计各年级学生人数
+    Map<String, Integer> countByGrade();
 }

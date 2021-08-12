@@ -3,6 +3,7 @@ package IDCC.service;
 import IDCC.bean.Mygroup;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description: 团队信息实现层接口
@@ -23,4 +24,6 @@ public interface GroupService {
     List<Mygroup> searchGroupByExample(int condition);
     // 获取所有团队信息
     List<Mygroup> getAllGroups();
+    // 获取各团队规模
+    Map<String, Integer> getGroupsScale();
 }

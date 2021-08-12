@@ -6,7 +6,9 @@ import IDCC.mapper.MygroupMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description: 团队信息实现层
@@ -88,5 +90,19 @@ public class GroupServiceImpl implements GroupService {
     public List<Mygroup> getAllGroups() {
         MygroupExample mygroupExample = new MygroupExample();
         return groupMapper.selectByExample(mygroupExample);
+    }
+    /**
+     * @description: 获取所有团队信息
+     * @return: Map<String, Integer>
+     * @author: Peng Chong
+     * @time: 2021/8/9 16:34
+     */
+    @Override
+    public Map<String, Integer> getGroupsScale() {
+        Map<String,Integer> countMap = new HashMap<String, Integer>();
+        for(Mygroup obj :getAllGroups())
+            countMap.put(obj.getGroupName(),obj.getGroupScale());
+
+        return countMap;
     }
 }

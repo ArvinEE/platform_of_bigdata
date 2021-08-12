@@ -148,21 +148,8 @@ public class AchievementController {
     @ApiOperation(value = "统计各著作成果数量及总数",notes = "未测试")
     @ResponseBody
     public String countByWriting(){
-        HashMap<String,Integer> countMap = new HashMap<String, Integer>();
-        int sum = 0;
-        String[] writingList = {"专著","教材","软著","著作成果"};
-        for(String grade:writingList) countMap.put(grade,0);
-
-        for (Achievement obj:achievementService.getAllAchievements()){
-            switch (obj.getAchievementClass()){
-                case 5:countMap.put("专著",countMap.get("专著")+1);break;
-                case 6:countMap.put("教材",countMap.get("教材")+1);break;
-                case 7:countMap.put("软著",countMap.get("软著")+1);break;
-            }
-        }
-//        countMap.forEach((key, value) -> countMap.put("著作成果",countMap.get("著作成果")+value));
-        for (String wrting:writingList) sum += countMap.get(wrting);
-        countMap.put("著作成果",sum);
+        Map<String,Integer> countMap = new HashMap<String, Integer>();
+        countMap = achievementService.countByWriting();
         String json = JSONObject.toJSONString(countMap);
         return json;
     }
@@ -177,16 +164,9 @@ public class AchievementController {
     @ApiOperation(value = "统计论文和授权专利总数",notes = "未测试")
     @ResponseBody
     public String countPaperAndPatent(){
-        HashMap<String,Integer> countMap = new HashMap<String, Integer>();
-        countMap.put("发表论文",0);
-        countMap.put("专利授权",0);
+        Map<String,Integer> countMap = new HashMap<String, Integer>();
 
-        for (Achievement obj:achievementService.getAllAchievements()){
-            if (obj.getAchievementClass() == 1) countMap.put("发表论文",countMap.get("发表论文")+1);
-            else if (obj.getAchievementClass() == 2) countMap.put("专利授权",countMap.get("专利授权")+1);
-        }
-
-
+        countMap = achievementService.countPaperAndPatent();
         String json = JSONObject.toJSONString(countMap);
         return json;
     }
@@ -201,25 +181,9 @@ public class AchievementController {
     @ApiOperation(value = "统计各团队论文数",notes = "未测试")
     @ResponseBody
     public String countPaperByGroup(){
-        HashMap<Integer,Integer> groupMap = new HashMap<Integer, Integer>();
-        HashMap<String,Integer> countMap = new HashMap<String, Integer>();
-        HashMap<Integer,String> transferMap = new HashMap<Integer,String>();
+        Map<String,Integer> countMap = new HashMap<String, Integer>();
 
-        for(Mygroup obj :groupService.getAllGroups())
-        {
-            groupMap.put(obj.getGroupId(),0);
-            transferMap.put(obj.getGroupId(),obj.getGroupName());
-        }
-
-        for (Achievement obj:achievementService.getAllAchievements()){
-            if (obj.getAchievementClass() == 1) {
-                int groupId = obj.getGroupId();
-                groupMap.put(groupId, groupMap.get(groupId)+1);
-            }
-        }
-
-        groupMap.forEach((key, value) -> countMap.put(transferMap.get(key),value));
-
+        countMap = achievementService.countPaperByGroup();
         String json = JSONObject.toJSONString(countMap);
         return json;
     }
@@ -234,25 +198,10 @@ public class AchievementController {
     @ApiOperation(value = "统计各团队授权专利数",notes = "未测试")
     @ResponseBody
     public String countPatentByGroup(){
-        HashMap<Integer,Integer> groupMap = new HashMap<Integer, Integer>();
-        HashMap<String,Integer> countMap = new HashMap<String, Integer>();
-        HashMap<Integer,String> transferMap = new HashMap<Integer,String>();
 
-        for(Mygroup obj :groupService.getAllGroups())
-        {
-            groupMap.put(obj.getGroupId(),0);
-            transferMap.put(obj.getGroupId(),obj.getGroupName());
-        }
+        Map<String,Integer> countMap = new HashMap<String, Integer>();
 
-        for (Achievement obj:achievementService.getAllAchievements()){
-            if (obj.getAchievementClass() == 2) {
-                int groupId = obj.getGroupId();
-                groupMap.put(groupId, groupMap.get(groupId)+1);
-            }
-        }
-
-        groupMap.forEach((key, value) -> countMap.put(transferMap.get(key),value));
-
+        countMap = achievementService.countPatentByGroup();
         String json = JSONObject.toJSONString(countMap);
         return json;
     }
