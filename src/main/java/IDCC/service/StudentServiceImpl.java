@@ -6,7 +6,10 @@ import IDCC.mapper.StudentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @description: 学生信息实现层
@@ -89,16 +92,57 @@ public class StudentServiceImpl implements StudentService{
      * @time: 2021/8/11 18:48
      **/
     @Override
-    public Map<String, Integer> countNewStudentNum() {
-        Map<String, Integer> map = new HashMap<>();
-        Calendar instance = Calendar.getInstance();
-        int year = instance.get(Calendar.YEAR);
-        System.out.println("year="+year);
-        StudentExample studentExample = new StudentExample();
-        System.out.println(new Date(year-5));
-        studentExample.createCriteria().andStudentEnrollmentBetween(new Date(year-5),new Date(year));
-        List<Student> students = studentMapper.selectByExample(studentExample);
-        System.out.println(students);
-        return null;
+    public Map<String, Map<String, Integer>> countNewStudentNum() {
+        Map<String, Map<String, Integer>> map = new HashMap<>();
+        Map<String, Integer> master = new HashMap<>();
+        Map<String, Integer> docter = new HashMap<>();
+        int  []mast = new int[5];
+        int  []doc = new int[5];
+        List<Student> students = studentMapper.selectByExample(new StudentExample());
+        for (Student student : students) {
+            String []time = String.valueOf(student.getStudentEnrollment()).split(" ");
+            int enterYear = Integer.valueOf(time[time.length-1]);
+            int now = Calendar.getInstance().get(Calendar.YEAR);
+            if (enterYear <= now && enterYear >= now-5){
+                String grade = student.getStudentGrade();
+                switch (grade){
+                    case "研一":
+                        master.put("研一", ++mast[0]);
+                        break;
+                    case "研二":
+                        master.put("研二", ++mast[1]);
+                        break;
+                    case "研三":
+                        master.put("研三", ++mast[2]);
+                        break;
+                    case "博一":
+                        docter.put("博一", ++doc[0]);
+                        break;
+                    case "博二":
+                        docter.put("博二", ++doc[1]);
+                        break;
+                    case "博三":
+                        docter.put("博三", ++doc[2]);
+                        break;
+                    case "硕士已毕业":
+                        if (enterYear == now-4){
+                            master.put("硕士毕业一年", ++mast[3]);
+                        }else {
+                            master.put("硕士毕业两年", ++mast[4]);
+                        }
+                        break;
+                    case "博士已毕业":
+                        if (enterYear == now-4){
+                            docter.put("博士毕业一年", ++doc[3]);
+                        }else {
+                            docter.put("博士毕业两年", ++doc[4]);
+                        }
+                        break;
+                }
+            }
+        }
+        map.put("硕士研究生", master);
+        map.put("博士研究生", docter);
+        return map;
     }
 }

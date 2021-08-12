@@ -158,7 +158,6 @@ public class StudentController {
     @ApiOperation(value = "新生新增人数变化（划分为博士、硕士两条线）",notes = "未测试")
     @ResponseBody
     public String countNewStudentNum(){
-        studentService.countNewStudentNum();
-        return "";
+        return JSONObject.toJSONString(studentService.countNewStudentNum());
     }
 }
