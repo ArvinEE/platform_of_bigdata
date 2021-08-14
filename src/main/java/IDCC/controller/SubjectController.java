@@ -118,7 +118,7 @@ public class SubjectController {
     @ApiOperation(value = "统计所有项目进度",notes = "未测试")
     @ResponseBody
     public String countBySchedule(){
-        Map<String,String> countMap = new HashMap<String, String>();
+        Map<String, Map<String, String>> countMap = new HashMap<>();
 
         countMap = subjectService.countBySchedule();
         String json = JSONObject.toJSONString(countMap);
@@ -126,14 +126,14 @@ public class SubjectController {
     }
 
     /**
-     * @description: 统计正在进行的项目数量和已解题的项目数量
+     * @description: 统计正在进行的项目数量和已结题的项目数量
      * @param: 无
      * @return:
      * @author: Lai ZhouHao
      * @time: 2021/8/11 19:17
     **/
     @GetMapping("/countSubjectScheduleNum")
-    @ApiOperation(value = "统计正在进行的项目数量和已解题的项目数量",notes = "未测试")
+    @ApiOperation(value = "统计正在进行的项目数量和已结题的项目数量",notes = "未测试")
     @ResponseBody
     public String countSubjectScheduleNum(){
         return JSONObject.toJSONString(subjectService.countSubjectScheduleNum());

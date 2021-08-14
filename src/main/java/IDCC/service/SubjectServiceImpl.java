@@ -6,6 +6,8 @@ import IDCC.mapper.SubjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,7 +79,7 @@ public class SubjectServiceImpl implements SubjectService{
     }
 
     /**
-     * @description: 统计正在进行的项目数量和已解题的项目数量
+     * @description: 统计正在进行的项目数量和已结题的项目数量
      * @param: 无
      * @return: Map<String, Integer>
      * @author: Lai ZhouHao
@@ -90,14 +92,16 @@ public class SubjectServiceImpl implements SubjectService{
         int finished = 0, process = 0;
         for (Subject subject : subjects) {
             String schedule = subject.getSubjectSchedule();
-            switch (schedule){
-                case "已结题":
-                    finished++;
-                    break;
-                case "正在进行":
-                    process++;
-                    break;
-            }
+//            switch (schedule){
+//                case "100%":
+//                    finished++;
+//                    break;
+//                case "正在进行":
+//                    process++;
+//                    break;
+//            }
+            if(schedule.equals("100%")) finished++;
+            else process++;
         }
         map.put("已结题", finished);
         map.put("正在进行", process);
@@ -111,12 +115,20 @@ public class SubjectServiceImpl implements SubjectService{
      * @time: 2021/8/10 19:27
      */
     @Override
-    public Map<String, String> countBySchedule(){
-        Map<String,String> countMap = new HashMap<String, String>();
-        SubjectExample subjectExample = new SubjectExample();
-        List<Subject> subjectList = subjectMapper.selectByExample(subjectExample);
-        for(Subject obj :subjectList)
-            countMap.put(obj.getSubjectName(),obj.getSubjectSchedule());
+    public Map<String, Map<String, String>> countBySchedule(){
+        Map<String, Map<String, String>> countMap = new HashMap<String, Map<String, String>>();
+
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        for(Subject obj :getAllSubjects()){
+            Map<String, String> valueMap = new HashMap<String, String>();
+            String starttime = simpleDateFormat.format(obj.getStarttime()).toString();
+            valueMap.put(starttime,obj.getSubjectSchedule());
+
+            countMap.put(obj.getSubjectId(),valueMap);
+        }
+
         return countMap;
     }
 
