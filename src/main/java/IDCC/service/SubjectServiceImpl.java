@@ -123,8 +123,8 @@ public class SubjectServiceImpl implements SubjectService{
 
         for(Subject obj :getAllSubjects()){
             Map<String, String> valueMap = new HashMap<String, String>();
-            String starttime = simpleDateFormat.format(obj.getStarttime()).toString();
-            valueMap.put(starttime,obj.getSubjectSchedule());
+            String deadline = simpleDateFormat.format(obj.getDeadline()).toString();
+            valueMap.put(deadline,obj.getSubjectSchedule());
 
             countMap.put(obj.getSubjectId(),valueMap);
         }
